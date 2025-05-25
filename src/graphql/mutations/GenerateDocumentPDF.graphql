@@ -1,0 +1,11 @@
+mutation GenerateDocumentPDF($jobId: ID!, $documentId: ID!, $documentType: String!) {
+  generateDocumentPdf(
+    jobId: $jobId
+    documentId: $documentId
+    documentType: $documentType
+  ) {
+    success
+    message
+    documentUrl
+  }
+} 

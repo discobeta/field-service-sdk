@@ -1,0 +1,13 @@
+mutation UpdateOrRegisterDevice($input: DeviceRegistrationInput!) {
+  updateOrRegisterDevice(input: $input) {
+    success
+    message
+    device {
+      deviceToken
+      deviceType
+      isActive
+      lastUsed
+      lastUpdated
+    }
+  }
+} 

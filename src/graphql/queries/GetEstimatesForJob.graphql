@@ -1,0 +1,5 @@
+query GetEstimatesForJob($jobId: ID!) {
+  estimatesForJob(jobId: $jobId) {
+    ...EstimateFragment
+  }
+} 

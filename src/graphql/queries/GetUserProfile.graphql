@@ -1,0 +1,10 @@
+query GetUserProfile {
+  userProfile {
+    id
+    firstName
+    lastName
+    phoneNumber
+    createdAt
+    updatedAt
+  }
+}

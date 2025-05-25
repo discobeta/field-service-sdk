@@ -1,0 +1,6 @@
+mutation DeleteEstimate($id: ID!) {
+  deleteEstimate(id: $id) {
+    success
+    message
+  }
+} 

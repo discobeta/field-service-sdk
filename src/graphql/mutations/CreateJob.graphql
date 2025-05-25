@@ -1,0 +1,9 @@
+mutation CreateJob($input: JobInput!) {
+  createJob(input: $input) {
+    job {
+      ...JobFragment
+    }
+    success
+    message
+  }
+} 

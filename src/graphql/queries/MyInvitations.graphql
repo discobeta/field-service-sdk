@@ -1,0 +1,17 @@
+query MyInvitations {
+  myInvitations {
+    id
+    email
+    status
+    account {
+      id
+      name
+    }
+    invitedBy {
+      id
+      email
+      firstName
+      lastName
+    }
+  }
+} 

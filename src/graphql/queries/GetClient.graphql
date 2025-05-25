@@ -1,0 +1,5 @@
+query GetClient($id: ID!) {
+  client(id: $id) {
+    ...ClientFragment
+  }
+} 

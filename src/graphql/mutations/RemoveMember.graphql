@@ -1,0 +1,6 @@
+mutation RemoveMember($accountId: ID!, $memberId: ID!) {
+  removeMember(accountId: $accountId, memberId: $memberId) {
+    success
+    message
+  }
+} 

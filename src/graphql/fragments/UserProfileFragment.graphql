@@ -1,0 +1,8 @@
+fragment UserProfileFragment on UserProfileType {
+  id
+  firstName
+  lastName
+  phoneNumber
+  createdAt
+  updatedAt
+} 

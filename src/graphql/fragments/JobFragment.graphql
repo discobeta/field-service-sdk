@@ -1,0 +1,19 @@
+fragment JobFragment on JobType {
+  id
+  title
+  description
+  status
+  scheduledDate
+  dueDate
+  createdAt
+  updatedAt
+  client {
+    ...ClientFragment
+  }
+  estimates {
+    ...EstimateFragment
+  }
+  invoices {
+    ...InvoiceFragment
+  }
+} 

@@ -1,0 +1,9 @@
+mutation UpdateInvoice($id: ID!, $input: InvoiceInput!) {
+  updateInvoice(id: $id, input: $input) {
+    invoice {
+      ...InvoiceFragment
+    }
+    success
+    message
+  }
+} 

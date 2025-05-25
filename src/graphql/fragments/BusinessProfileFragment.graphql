@@ -1,0 +1,11 @@
+fragment BusinessProfileFragment on BusinessProfileType {
+  id
+  name
+  email
+  phone
+  address
+  website
+  logo
+  createdAt
+  updatedAt
+} 

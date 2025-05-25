@@ -1,0 +1,14 @@
+query GetJobs($status: String, $clientId: ID, $assignedToId: ID) {
+  jobs(status: $status, clientId: $clientId, assignedToId: $assignedToId) {
+    ...JobFragment
+    client {
+      ...ClientFragment
+    }
+    estimates {
+      ...EstimateFragment
+    }
+    invoices {
+      ...InvoiceFragment
+    }
+  }
+} 

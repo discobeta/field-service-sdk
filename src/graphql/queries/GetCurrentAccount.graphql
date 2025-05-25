@@ -1,0 +1,10 @@
+query GetCurrentAccount {
+  currentAccount {
+    id
+    name
+    members {
+      id
+      isAdmin
+    }
+  }
+} 

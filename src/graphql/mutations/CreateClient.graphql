@@ -1,0 +1,9 @@
+mutation CreateClient($input: ClientInput!) {
+  createClient(input: $input) {
+    client {
+      ...ClientFragment
+    }
+    success
+    message
+  }
+} 

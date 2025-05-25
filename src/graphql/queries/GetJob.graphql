@@ -1,0 +1,14 @@
+query GetJob($id: ID!) {
+  job(id: $id) {
+    ...JobFragment
+    client {
+      ...ClientFragment
+    }
+    estimates {
+      ...EstimateFragment
+    }
+    invoices {
+      ...InvoiceFragment
+    }
+  }
+} 

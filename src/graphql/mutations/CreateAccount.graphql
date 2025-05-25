@@ -1,0 +1,6 @@
+mutation CreateAccount($name: String!, $ownerId: ID!, $subscriptionPlan: String) {
+  createAccount(name: $name, ownerId: $ownerId, subscriptionPlan: $subscriptionPlan) {
+    success
+    message
+  }
+} 

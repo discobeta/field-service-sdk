@@ -1,0 +1,48 @@
+{
+  "name": "field-service-sdk",
+  "version": "2.0.2",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "description": "TypeScript SDK for the Field Service application",
+  "keywords": [
+    "field-service",
+    "sdk",
+    "typescript",
+    "graphql"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/discobeta/field-service-sdk.git"
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "update-schema": "node src/update-schema.js",
+    "generate": "graphql-codegen --config codegen.yml",
+    "prepare": "npm run update-schema && npm run generate && npm run build",
+    "prepublishOnly": "npm run prepare",
+    "publish": "npm publish --access public",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.13.8",
+    "graphql": "^16.11.0",
+    "react": "18.3.1"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/typescript": "^4.1.6",
+    "@graphql-codegen/typescript-operations": "^4.6.1",
+    "@graphql-codegen/typescript-react-apollo": "^4.3.2",
+    "typescript": "^5.3.3"
+  },
+  "files": [
+    "dist"
+  ]
+}

@@ -1,0 +1,9 @@
+mutation UpdateJob($id: ID!, $input: JobInput!) {
+  updateJob(id: $id, input: $input) {
+    job {
+      ...JobFragment
+    }
+    success
+    message
+  }
+} 

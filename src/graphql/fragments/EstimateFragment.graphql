@@ -1,0 +1,19 @@
+fragment EstimateFragment on EstimateType {
+  id
+  date
+  status
+  total
+  createdAt
+  updatedAt
+  applyTaxes
+  job {
+    id
+    title
+  }
+  lineItems {
+    id
+    title
+    description
+    price
+  }
+} 

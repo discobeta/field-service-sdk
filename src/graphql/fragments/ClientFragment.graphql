@@ -1,0 +1,16 @@
+fragment ClientFragment on ClientType {
+  id
+  name
+  email
+  phone
+  address1
+  address2
+  city
+  state
+  zipCode
+  notes
+  locationLatitude
+  locationLongitude
+  createdAt
+  updatedAt
+} 

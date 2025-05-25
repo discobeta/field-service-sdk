@@ -1,0 +1,5 @@
+query GetInvoicesForJob($jobId: ID!) {
+  invoicesForJob(jobId: $jobId) {
+    ...InvoiceFragment
+  }
+} 

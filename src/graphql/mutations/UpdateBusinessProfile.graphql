@@ -1,0 +1,9 @@
+mutation UpdateBusinessProfile($input: BusinessProfileInput!) {
+  updateBusinessProfile(input: $input) {
+    businessProfile {
+      ...BusinessProfileFragment
+    }
+    success
+    message
+  }
+} 

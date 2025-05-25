@@ -1,0 +1,9 @@
+mutation CreateEstimate($input: EstimateInput!) {
+  createEstimate(input: $input) {
+    estimate {
+      ...EstimateFragment
+    }
+    success
+    message
+  }
+} 

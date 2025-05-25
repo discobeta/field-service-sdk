@@ -1,0 +1,6 @@
+mutation RejectInvitation($input: InvitationResponseInput!) {
+  rejectInvitation(input: $input) {
+    success
+    message
+  }
+} 

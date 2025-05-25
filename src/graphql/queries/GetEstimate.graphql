@@ -1,0 +1,5 @@
+query GetEstimate($id: ID!) {
+  estimate(id: $id) {
+    ...EstimateFragment
+  }
+} 

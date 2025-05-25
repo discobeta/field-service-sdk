@@ -1,0 +1,9 @@
+mutation UpdateClient($id: ID!, $input: ClientInput!) {
+  updateClient(id: $id, input: $input) {
+    client {
+      ...ClientFragment
+    }
+    success
+    message
+  }
+} 

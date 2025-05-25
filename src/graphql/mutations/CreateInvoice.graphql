@@ -1,0 +1,9 @@
+mutation CreateInvoice($input: InvoiceInput!) {
+  createInvoice(input: $input) {
+    invoice {
+      ...InvoiceFragment
+    }
+    success
+    message
+  }
+} 

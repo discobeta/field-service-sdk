@@ -1,0 +1,20 @@
+fragment InvoiceFragment on InvoiceType {
+  id
+  date
+  dueDate
+  status
+  total
+  applyTaxes
+  createdAt
+  updatedAt
+  job {
+    id
+    title
+  }
+  lineItems {
+    id
+    title
+    description
+    price
+  }
+} 

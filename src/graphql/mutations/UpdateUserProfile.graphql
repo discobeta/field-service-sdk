@@ -1,0 +1,9 @@
+mutation UpdateUserProfile($input: UserProfileInput!) {
+  updateUserProfile(input: $input) {
+    userProfile {
+      ...UserProfileFragment
+    }
+    success
+    message
+  }
+} 

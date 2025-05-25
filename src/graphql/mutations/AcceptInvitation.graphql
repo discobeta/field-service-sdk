@@ -1,0 +1,10 @@
+mutation AcceptInvitation($input: InvitationResponseInput!) {
+  acceptInvitation(input: $input) {
+    success
+    message
+    account {
+      id
+      name
+    }
+  }
+} 
