@@ -3,6 +3,7 @@ query GetUserProfile {
     id
     firstName
     lastName
+    timezone
     phoneNumber
     createdAt
     updatedAt
