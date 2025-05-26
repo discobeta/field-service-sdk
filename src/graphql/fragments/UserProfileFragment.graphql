@@ -3,6 +3,7 @@ fragment UserProfileFragment on UserProfileType {
   firstName
   lastName
   phoneNumber
+  timezone
   createdAt
   updatedAt
 } 
