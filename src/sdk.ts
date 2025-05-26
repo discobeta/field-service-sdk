@@ -784,8 +784,10 @@ const USER_PROFILE = gql`
       firstName
       lastName
       phoneNumber
+      timezone
       createdAt
       updatedAt
+      timezone
     }
   }
 `;
@@ -798,6 +800,7 @@ const UPDATE_USER_PROFILE = gql`
         firstName
         lastName
         phoneNumber
+        timezone
       }
       success
       message
