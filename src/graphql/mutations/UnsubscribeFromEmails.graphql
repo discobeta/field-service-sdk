@@ -1,0 +1,6 @@
+mutation UnsubscribeFromEmails($emailHash: String!, $source: String!) {
+  unsubscribeFromEmails(emailHash: $emailHash, source: $source) {
+    success
+    message
+  }
+} 

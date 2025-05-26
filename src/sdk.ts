@@ -18,6 +18,7 @@ import {
   ClientType,
   JobType,
   EstimateType,
+  UnsubscribeFromEmailsDocument,
 } from './generated/graphql';
 
 // Import the GraphQL documents directly
@@ -836,6 +837,14 @@ const EXPORT_DATA = gql`
   }
 `;
 
+const UNSUBSCRIBE_FROM_EMAILS = gql`
+  mutation UnsubscribeFromEmails($emailHash: String!, $source: String!) {
+    unsubscribeFromEmails(emailHash: $emailHash, source: $source) {
+      success
+      message
+    }
+  }
+`;
 export class FieldServiceSDK {
   private client: FieldServiceClient;
   private apolloClient: ApolloClient<NormalizedCacheObject>;
@@ -1250,5 +1259,15 @@ export class FieldServiceSDK {
       variables: { }
     });
     return result.data?.exportData;
+  }
+
+  async unsubscribeFromEmails(emailHash: string, source: string) {
+    const response = await this.apolloClient.mutate({
+      mutation: UNSUBSCRIBE_FROM_EMAILS,
+      variables: {
+        emailHash,
+        source
+      }
+    })
   }
 } 
