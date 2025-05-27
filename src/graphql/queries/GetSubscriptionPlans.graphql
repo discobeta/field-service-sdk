@@ -1,0 +1,14 @@
+query GetSubscriptionPlans {
+  subscriptionPlans {
+    id
+    name
+    description
+    price
+    currency
+    period
+    trialPeriodDays
+    isActive
+    createdAt
+    updatedAt
+  }
+} 

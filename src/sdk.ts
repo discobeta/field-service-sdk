@@ -19,6 +19,8 @@ import {
   JobType,
   EstimateType,
   UnsubscribeFromEmailsDocument,
+  GetSubscriptionPlansQuery,
+  SubscriptionPlanType
 } from './generated/graphql';
 
 // Import the GraphQL documents directly
@@ -845,6 +847,24 @@ const UNSUBSCRIBE_FROM_EMAILS = gql`
     }
   }
 `;
+
+const GET_SUBSCRIPTION_PLANS = gql`
+  query GetSubscriptionPlans {
+    subscriptionPlans {
+      id
+      name
+      description
+      price
+      currency
+      period
+      trialPeriodDays
+      isActive
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
 export class FieldServiceSDK {
   private client: FieldServiceClient;
   private apolloClient: ApolloClient<NormalizedCacheObject>;
@@ -1269,5 +1289,14 @@ export class FieldServiceSDK {
         source
       }
     })
+    return response.data?.unsubscribeFromEmails;
   }
+
+  public async getSubscriptionPlans() {
+    const result = await this.apolloClient.query<GetSubscriptionPlansQuery>({
+      query: GET_SUBSCRIPTION_PLANS
+    });
+    return result.data.subscriptionPlans;
+  }
+
 } 
