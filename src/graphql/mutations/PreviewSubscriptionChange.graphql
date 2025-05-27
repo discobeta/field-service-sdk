@@ -1,0 +1,15 @@
+mutation PreviewSubscriptionChange($planId: ID!, $prorationBehavior: String) {
+  previewSubscriptionChange(planId: $planId, prorationBehavior: $prorationBehavior) {
+    success
+    preview {
+      total
+      nextBillingDate
+      prorationDate
+      prorationAmount
+      currentPeriodEnd
+      __typename
+      currentPeriodEnd
+    }
+    error
+  }
+} 

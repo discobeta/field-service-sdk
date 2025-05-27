@@ -1,5 +1,6 @@
-  mutation UpdateSubscription($planId: ID!) {
-    updateSubscription(planId: $planId) {
-      success
-    }
+mutation UpdateSubscription($planId: ID!, $prorationBehavior: String) {
+  updateSubscription(planId: $planId, prorationBehavior: $prorationBehavior) {
+    success
+    error
   }
+}

@@ -907,13 +907,30 @@ const CANCEL_SUBSCRIPTION = gql`
 `;
 
 const UPDATE_SUBSCRIPTION = gql`
-  mutation UpdateSubscription($planId: ID!) {
-    updateSubscription(planId: $planId) {
+  mutation updateSubscription($planId: ID!, $prorationBehavior: String) {
+    updateSubscription(planId: $planId, prorationBehavior: $prorationBehavior) {
       success
     }
   }
 `;
 
+const PREVIEW_SUBSCRIPTION_CHANGE = gql`
+  mutation previewSubscriptionChange($planId: ID!, $prorationBehavior: String) {
+    previewSubscriptionChange(planId: $planId, prorationBehavior: $prorationBehavior) {
+      success
+      preview {
+        total
+        nextBillingDate
+        prorationDate
+        prorationAmount
+        currentPeriodEnd
+        __typename
+        currentPeriodEnd
+      }
+      error
+    }
+  }
+`;
 
 export class FieldServiceSDK {
   private client: FieldServiceClient;
@@ -1332,54 +1349,52 @@ export class FieldServiceSDK {
   }
 
   async unsubscribeFromEmails(emailHash: string, source: string) {
-    const response = await this.apolloClient.mutate({
+    return this.apolloClient.mutate({
       mutation: UNSUBSCRIBE_FROM_EMAILS,
       variables: {
         emailHash,
         source
       }
     })
-    return response.data?.unsubscribeFromEmails;
   }
 
   public async getSubscriptionPlans() {
-    const result = await this.apolloClient.query<GetSubscriptionPlansQuery>({
+    return this.apolloClient.query<GetSubscriptionPlansQuery>({
       query: GET_SUBSCRIPTION_PLANS
     });
-    return result.data.subscriptionPlans;
   }
 
   public async getMySubscription() {
-    const result = await this.apolloClient.query({
+    return this.apolloClient.query({
       query: GET_MY_SUBSCRIPTION
     });
-    return result.data.mySubscription;
   }
 
   public async createCheckoutSession(planId: string, successUrl: string, cancelUrl: string) {
-    const result = await this.apolloClient.mutate({
+    return this.apolloClient.mutate({
       mutation: CREATE_CHECKOUT_SESSION,
       variables: { planId, successUrl, cancelUrl }
     });
-    return result.data?.createCheckoutSession;
   }
 
   public async cancelSubscription() {
-    const result = await this.apolloClient.mutate({
+    return this.apolloClient.mutate({
       mutation: CANCEL_SUBSCRIPTION
     });
-    return result.data?.cancelSubscription;
   }
   
-  public async updateSubscription(planId: string) {
-    const result = await this.apolloClient.mutate({
+  public async updateSubscription(planId: string, prorationBehavior: 'always_invoice' | 'create_prorations' | 'none') {
+    return this.apolloClient.mutate({
       mutation: UPDATE_SUBSCRIPTION,
-      variables: { planId }
+      variables: { planId, prorationBehavior }
     });
-    return result.data?.updateSubscription;
   }
 
+  public async previewSubscriptionChange(planId: string, prorationBehavior: 'always_invoice' | 'create_prorations' | 'none') {
+    return this.apolloClient.mutate({
+      mutation: PREVIEW_SUBSCRIPTION_CHANGE,
+      variables: { planId, prorationBehavior }
+    });
+  }
 
-  
-  
 } 
