@@ -1,0 +1,21 @@
+query GetMySubscription {
+    mySubscription {
+      id
+      plan {
+        id
+        name
+        description
+        price
+        currency
+        period
+        trialPeriodDays
+        isActive
+      }
+      status
+      currentPeriodStart
+      currentPeriodEnd
+      cancelAtPeriodEnd
+      createdAt
+      updatedAt
+    }
+  }

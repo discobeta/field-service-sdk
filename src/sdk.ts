@@ -865,6 +865,56 @@ const GET_SUBSCRIPTION_PLANS = gql`
   }
 `;
 
+const GET_MY_SUBSCRIPTION = gql`
+  query GetMySubscription {
+    mySubscription {
+      id
+      plan {
+        id
+        name
+        description
+        price
+        currency
+        period
+        trialPeriodDays
+        isActive
+      }
+      status
+      currentPeriodStart
+      currentPeriodEnd
+      cancelAtPeriodEnd
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+const CREATE_CHECKOUT_SESSION = gql`
+  mutation CreateCheckoutSession($planId: ID!, $successUrl: String!, $cancelUrl: String!) {
+    createCheckoutSession(planId: $planId, successUrl: $successUrl, cancelUrl: $cancelUrl) {
+      checkoutUrl
+      sessionId
+    }
+  }
+`;
+
+const CANCEL_SUBSCRIPTION = gql`
+  mutation CancelSubscription {
+    cancelSubscription {
+      success
+    }
+  }
+`;
+
+const UPDATE_SUBSCRIPTION = gql`
+  mutation UpdateSubscription($planId: ID!) {
+    updateSubscription(planId: $planId) {
+      success
+    }
+  }
+`;
+
+
 export class FieldServiceSDK {
   private client: FieldServiceClient;
   private apolloClient: ApolloClient<NormalizedCacheObject>;
@@ -1299,4 +1349,37 @@ export class FieldServiceSDK {
     return result.data.subscriptionPlans;
   }
 
+  public async getMySubscription() {
+    const result = await this.apolloClient.query({
+      query: GET_MY_SUBSCRIPTION
+    });
+    return result.data.mySubscription;
+  }
+
+  public async createCheckoutSession(planId: string, successUrl: string, cancelUrl: string) {
+    const result = await this.apolloClient.mutate({
+      mutation: CREATE_CHECKOUT_SESSION,
+      variables: { planId, successUrl, cancelUrl }
+    });
+    return result.data?.createCheckoutSession;
+  }
+
+  public async cancelSubscription() {
+    const result = await this.apolloClient.mutate({
+      mutation: CANCEL_SUBSCRIPTION
+    });
+    return result.data?.cancelSubscription;
+  }
+  
+  public async updateSubscription(planId: string) {
+    const result = await this.apolloClient.mutate({
+      mutation: UPDATE_SUBSCRIPTION,
+      variables: { planId }
+    });
+    return result.data?.updateSubscription;
+  }
+
+
+  
+  
 } 

@@ -1,0 +1,5 @@
+  mutation UpdateSubscription($planId: ID!) {
+    updateSubscription(planId: $planId) {
+      success
+    }
+  }

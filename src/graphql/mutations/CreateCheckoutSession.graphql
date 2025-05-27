@@ -1,0 +1,6 @@
+mutation CreateCheckoutSession($planId: ID!, $successUrl: String!, $cancelUrl: String!) {
+    createCheckoutSession(planId: $planId, successUrl: $successUrl, cancelUrl: $cancelUrl) {
+        checkoutUrl
+        sessionId
+    }
+}
