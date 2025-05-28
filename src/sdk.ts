@@ -920,6 +920,22 @@ const PREVIEW_SUBSCRIPTION_CHANGE = gql`
   }
 `;
 
+const SUBMIT_FEEDBACK = gql`
+  mutation SubmitFeedback($description: String!, $pageUrl: String) {
+    submitFeedback(description: $description, pageUrl: $pageUrl) {
+      success
+      message
+      feedback {
+        id
+        user
+        pageUrl
+        description
+        createdAt
+      }
+    }
+  }
+`;
+
 export class FieldServiceSDK {
   private client: FieldServiceClient;
   private apolloClient: ApolloClient<NormalizedCacheObject>;
@@ -1382,6 +1398,16 @@ export class FieldServiceSDK {
     return this.apolloClient.mutate({
       mutation: PREVIEW_SUBSCRIPTION_CHANGE,
       variables: { planId, prorationBehavior }
+    });
+  }
+
+  async submitFeedback(description: string, pageUrl?: string) {
+    return this.apolloClient.mutate({
+      mutation: SUBMIT_FEEDBACK,
+      variables: {
+        description,
+        pageUrl
+      }
     });
   }
 

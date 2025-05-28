@@ -1,0 +1,7 @@
+fragment FeedbackFragment on Feedback {
+  id
+  user
+  pageUrl
+  description
+  createdAt
+}

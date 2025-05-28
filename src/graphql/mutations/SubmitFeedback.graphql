@@ -1,0 +1,9 @@
+mutation SubmitFeedback($description: String!, $pageUrl: String) {
+  submitFeedback(description: $description, pageUrl: $pageUrl) {
+    feedback {
+      pageUrl
+      description
+      createdAt
+    }
+  }
+}

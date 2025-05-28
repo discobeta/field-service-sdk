@@ -20,4 +20,12 @@ export type {
   InvoiceType,
   UserProfileInput,
   UserProfileType,
-} from './generated/graphql'; 
+} from './generated/graphql';
+
+export interface Feedback {
+  id: string;
+  user: string;
+  pageUrl?: string;
+  description: string;
+  createdAt: string;
+} 
