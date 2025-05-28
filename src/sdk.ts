@@ -165,7 +165,7 @@ const GET_JOBS = gql`
           description
           price
           type
-          tax_type
+          taxType
         }
       }
       invoices {
@@ -181,7 +181,7 @@ const GET_JOBS = gql`
           description
           price
           type
-          tax_type
+          taxType
         }
       }
     }
@@ -224,7 +224,7 @@ const GET_JOB = gql`
           description
           price
           type
-          tax_type
+          taxType
         }
       }
       invoices {
@@ -240,7 +240,7 @@ const GET_JOB = gql`
           description
           price
           type
-          tax_type
+          taxType
         }
       }
     }
@@ -331,7 +331,7 @@ const GET_ESTIMATES_FOR_JOB = gql`
         description
         price
         type
-        tax_type
+        taxType
       }
     }
   }
@@ -351,7 +351,7 @@ const GET_ESTIMATE = gql`
         description
         price
         type
-        tax_type
+        taxType
       }
     }
   }
@@ -372,7 +372,7 @@ const CREATE_ESTIMATE = gql`
           description
           price
           type
-          tax_type
+          taxType
         }
       }
       success
@@ -396,7 +396,7 @@ const UPDATE_ESTIMATE = gql`
           description
           price
           type
-          tax_type
+          taxType
         }
       }
       success
@@ -430,7 +430,7 @@ const GET_INVOICES_FOR_JOB = gql`
         description
         price
         type
-        tax_type
+        taxType
       }
     }
   }
@@ -451,7 +451,7 @@ const GET_INVOICE = gql`
         description
         price
         type
-        tax_type
+        taxType
       }
     }
   }
@@ -473,7 +473,7 @@ const CREATE_INVOICE = gql`
           description
           price
           type
-          tax_type
+          taxType
         }
       }
       success
@@ -498,7 +498,7 @@ const UPDATE_INVOICE = gql`
           description
           price
           type
-          tax_type
+          taxType
         }
       }
       success
