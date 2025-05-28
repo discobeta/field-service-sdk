@@ -546,9 +546,14 @@ const GET_BUSINESS_PROFILE = gql`
       name
       email
       phone
-      address
       website
       logo
+      address1
+      address2
+      city
+      state
+      zipCode
+      taxServiceType
       createdAt
       updatedAt
     }
@@ -563,9 +568,14 @@ const UPDATE_BUSINESS_PROFILE = gql`
         name
         email
         phone
-        address
         website
         logo
+        address1
+        address2
+        city
+        state
+        zipCode
+        taxServiceType
         createdAt
         updatedAt
       }

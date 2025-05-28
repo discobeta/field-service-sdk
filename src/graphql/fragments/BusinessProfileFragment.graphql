@@ -3,9 +3,14 @@ fragment BusinessProfileFragment on BusinessProfileType {
   name
   email
   phone
-  address
   website
   logo
+  address1
+  address2
+  city
+  state
+  zipCode
+  taxServiceType
   createdAt
   updatedAt
 } 
