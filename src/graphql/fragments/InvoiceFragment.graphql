@@ -16,5 +16,7 @@ fragment InvoiceFragment on InvoiceType {
     title
     description
     price
+    type
+    taxType
   }
 } 

@@ -164,6 +164,8 @@ const GET_JOBS = gql`
           title
           description
           price
+          type
+          tax_type
         }
       }
       invoices {
@@ -172,11 +174,14 @@ const GET_JOBS = gql`
         status
         total
         applyTaxes
+        dueDate
         lineItems {
           id
           title
           description
           price
+          type
+          tax_type
         }
       }
     }
@@ -218,6 +223,8 @@ const GET_JOB = gql`
           title
           description
           price
+          type
+          tax_type
         }
       }
       invoices {
@@ -226,11 +233,14 @@ const GET_JOB = gql`
         status
         total
         applyTaxes
+        dueDate
         lineItems {
           id
           title
           description
           price
+          type
+          tax_type
         }
       }
     }
@@ -315,17 +325,13 @@ const GET_ESTIMATES_FOR_JOB = gql`
       status
       total
       applyTaxes
-      createdAt
-      updatedAt
-      job {
-        id
-        title
-      }
       lineItems {
         id
         title
         description
         price
+        type
+        tax_type
       }
     }
   }
@@ -339,17 +345,13 @@ const GET_ESTIMATE = gql`
       status
       total
       applyTaxes
-      createdAt
-      updatedAt
-      job {
-        id
-        title
-      }
       lineItems {
         id
         title
         description
         price
+        type
+        tax_type
       }
     }
   }
@@ -364,17 +366,13 @@ const CREATE_ESTIMATE = gql`
         status
         total
         applyTaxes
-        createdAt
-        updatedAt
-        job {
-          id
-          title
-        }
         lineItems {
           id
           title
           description
           price
+          type
+          tax_type
         }
       }
       success
@@ -392,17 +390,13 @@ const UPDATE_ESTIMATE = gql`
         status
         total
         applyTaxes
-        createdAt
-        updatedAt
-        job {
-          id
-          title
-        }
         lineItems {
           id
           title
           description
           price
+          type
+          tax_type
         }
       }
       success
@@ -426,21 +420,17 @@ const GET_INVOICES_FOR_JOB = gql`
     invoicesForJob(jobId: $jobId) {
       id
       date
-      dueDate
       status
       total
       applyTaxes
-      createdAt
-      updatedAt
-      job {
-        id
-        title
-      }
+      dueDate
       lineItems {
         id
         title
         description
         price
+        type
+        tax_type
       }
     }
   }
@@ -451,21 +441,17 @@ const GET_INVOICE = gql`
     invoice(id: $id) {
       id
       date
-      dueDate
       status
       total
       applyTaxes
-      createdAt
-      updatedAt
-      job {
-        id
-        title
-      }
+      dueDate
       lineItems {
         id
         title
         description
         price
+        type
+        tax_type
       }
     }
   }
@@ -477,21 +463,17 @@ const CREATE_INVOICE = gql`
       invoice {
         id
         date
-        dueDate
         status
         total
         applyTaxes
-        createdAt
-        updatedAt
-        job {
-          id
-          title
-        }
+        dueDate
         lineItems {
           id
           title
           description
           price
+          type
+          tax_type
         }
       }
       success
@@ -506,21 +488,17 @@ const UPDATE_INVOICE = gql`
       invoice {
         id
         date
-        dueDate
         status
         total
         applyTaxes
-        createdAt
-        updatedAt
-        job {
-          id
-          title
-        }
+        dueDate
         lineItems {
           id
           title
           description
           price
+          type
+          tax_type
         }
       }
       success

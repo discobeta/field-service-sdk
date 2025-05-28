@@ -15,5 +15,7 @@ fragment EstimateFragment on EstimateType {
     title
     description
     price
+    type
+    taxType
   }
 } 
