@@ -568,18 +568,8 @@ const GET_CURRENT_ACCOUNT = gql`
     currentAccount {
       id
       name
-      email
-      accountType
       createdAt
-      businessProfile {
-        id
-        name
-        email
-        phone
-        address
-        website
-        logo
-      }
+      
     }
   }
 `;
@@ -923,8 +913,6 @@ const PREVIEW_SUBSCRIPTION_CHANGE = gql`
 const SUBMIT_FEEDBACK = gql`
   mutation SubmitFeedback($description: String!, $pageUrl: String) {
     submitFeedback(description: $description, pageUrl: $pageUrl) {
-      success
-      message
       feedback {
         id
         user
@@ -932,6 +920,8 @@ const SUBMIT_FEEDBACK = gql`
         description
         createdAt
       }
+      success
+      message
     }
   }
 `;

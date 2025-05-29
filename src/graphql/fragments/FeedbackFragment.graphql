@@ -1,4 +1,4 @@
-fragment FeedbackFragment on Feedback {
+fragment FeedbackFragment on FeedbackType {
   id
   user
   pageUrl

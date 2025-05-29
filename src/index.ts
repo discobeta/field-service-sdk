@@ -21,11 +21,3 @@ export type {
   UserProfileInput,
   UserProfileType,
 } from './generated/graphql';
-
-export interface Feedback {
-  id: string;
-  user: string;
-  pageUrl?: string;
-  description: string;
-  createdAt: string;
-} 
