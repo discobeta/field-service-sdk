@@ -325,6 +325,10 @@ const GET_ESTIMATES_FOR_JOB = gql`
       status
       total
       applyTaxes
+      job {
+        id
+        title
+      }
       lineItems {
         id
         title
@@ -345,6 +349,10 @@ const GET_ESTIMATE = gql`
       status
       total
       applyTaxes
+      job {
+        id
+        title
+      }
       lineItems {
         id
         title
@@ -366,6 +374,10 @@ const CREATE_ESTIMATE = gql`
         status
         total
         applyTaxes
+        job {
+          id
+          title
+        }
         lineItems {
           id
           title
@@ -390,6 +402,10 @@ const UPDATE_ESTIMATE = gql`
         status
         total
         applyTaxes
+        job {
+          id
+          title
+        }
         lineItems {
           id
           title
@@ -424,6 +440,10 @@ const GET_INVOICES_FOR_JOB = gql`
       total
       applyTaxes
       dueDate
+      job {
+        id
+        title
+      }
       lineItems {
         id
         title
@@ -445,6 +465,10 @@ const GET_INVOICE = gql`
       total
       applyTaxes
       dueDate
+      job {
+        id
+        title
+      }
       lineItems {
         id
         title
@@ -467,6 +491,10 @@ const CREATE_INVOICE = gql`
         total
         applyTaxes
         dueDate
+        job {
+          id
+          title
+        }
         lineItems {
           id
           title
@@ -492,6 +520,10 @@ const UPDATE_INVOICE = gql`
         total
         applyTaxes
         dueDate
+        job {
+          id
+          title
+        }
         lineItems {
           id
           title
