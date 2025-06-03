@@ -6,5 +6,12 @@ query GetCurrentAccount {
       id
       isAdmin
     }
+    subscriptionPlan {
+      id
+      name
+      maxJobs
+      maxClients
+      maxTeamMembers
+    }
   }
 } 

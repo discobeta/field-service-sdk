@@ -887,6 +887,9 @@ const GET_SUBSCRIPTION_PLANS = gql`
       isActive
       createdAt
       updatedAt
+      maxTeamMembers
+      maxClients
+      maxJobs
     }
   }
 `;
@@ -904,6 +907,9 @@ const GET_MY_SUBSCRIPTION = gql`
         period
         trialPeriodDays
         isActive
+        maxTeamMembers
+        maxClients
+        maxJobs
       }
       status
       currentPeriodStart

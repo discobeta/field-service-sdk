@@ -8,6 +8,9 @@ query GetSubscriptionPlans {
     period
     trialPeriodDays
     isActive
+    maxJobs
+    maxClients
+    maxTeamMembers
     createdAt
     updatedAt
   }

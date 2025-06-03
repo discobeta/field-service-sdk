@@ -10,6 +10,9 @@ query GetMySubscription {
         period
         trialPeriodDays
         isActive
+        maxJobs
+        maxClients
+        maxTeamMembers
       }
       status
       currentPeriodStart

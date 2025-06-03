@@ -20,4 +20,5 @@ export type {
   InvoiceType,
   UserProfileInput,
   UserProfileType,
+  SubscriptionPlanType,
 } from './generated/graphql';
