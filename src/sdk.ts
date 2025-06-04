@@ -742,15 +742,6 @@ const MY_INVITATIONS = gql`
   }
 `;
 
-const CREATE_ACCOUNT = gql`
-  mutation CreateAccount($name: String!, $ownerId: ID!, $subscriptionPlan: String) {
-    createAccount(name: $name, ownerId: $ownerId, subscriptionPlan: $subscriptionPlan) {
-      success
-      message
-    }
-  }
-`;
-
 const INVITE_USER = gql`
   mutation InviteUser($input: InviteUserInput!) {
     inviteUser(input: $input) {
@@ -1308,13 +1299,6 @@ export class FieldServiceSDK {
   public async getMyInvitations() {
     return this.apolloClient.query({
       query: MY_INVITATIONS
-    });
-  }
-
-  public async createAccount(name: string, ownerId: string, subscriptionPlan?: string) {
-    return this.apolloClient.mutate({
-      mutation: CREATE_ACCOUNT,
-      variables: { name, ownerId, subscriptionPlan }
     });
   }
 
