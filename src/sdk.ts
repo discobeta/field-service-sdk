@@ -971,6 +971,24 @@ const SUBMIT_FEEDBACK = gql`
   }
 `;
 
+const REQUEST_ACCOUNT_DELETION = gql`
+  mutation RequestAccountDeletion {
+    requestAccountDeletion {
+      success
+      message
+    }
+  }
+`;
+
+const CONFIRM_ACCOUNT_DELETION = gql`
+  mutation ConfirmAccountDeletion($otpCode: String!) {
+    confirmAccountDeletion(otpCode: $otpCode) {
+      success
+      message
+    }
+  }
+`;
+
 export class FieldServiceSDK {
   private client: FieldServiceClient;
   private apolloClient: ApolloClient<NormalizedCacheObject>;
@@ -1436,6 +1454,19 @@ export class FieldServiceSDK {
         description,
         pageUrl
       }
+    });
+  }
+
+  public async requestAccountDeletion() {
+    return this.apolloClient.mutate({
+      mutation: REQUEST_ACCOUNT_DELETION
+    });
+  }
+
+  public async confirmAccountDeletion(otpCode: string) {
+    return this.apolloClient.mutate({
+      mutation: CONFIRM_ACCOUNT_DELETION,
+      variables: { otpCode }
     });
   }
 

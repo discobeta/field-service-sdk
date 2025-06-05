@@ -1,0 +1,6 @@
+mutation ConfirmAccountDeletion($otpCode: String!) {
+  confirmAccountDeletion(otpCode: $otpCode) {
+    success
+    message
+  }
+} 
