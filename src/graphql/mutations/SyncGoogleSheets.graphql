@@ -1,0 +1,6 @@
+mutation SyncGoogleSheets {
+  syncGoogleSheets {
+    success
+    error
+  }
+} 

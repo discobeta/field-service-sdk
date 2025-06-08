@@ -1,0 +1,6 @@
+mutation DisableGoogleSheetsIntegration {
+  disableGoogleSheetsIntegration {
+    success
+    error
+  }
+} 

@@ -1,0 +1,7 @@
+mutation EnableGoogleSheetsIntegration($input: GoogleSheetsAuthInput!) {
+  enableGoogleSheetsIntegration(input: $input) {
+    success
+    error
+    spreadsheetUrl
+  }
+} 

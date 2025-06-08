@@ -20,7 +20,8 @@ import {
   EstimateType,
   UnsubscribeFromEmailsDocument,
   GetSubscriptionPlansQuery,
-  SubscriptionPlanType
+  SubscriptionPlanType,
+  GoogleSheetsAuthInput
 } from './generated/graphql';
 
 // Import the GraphQL documents directly
@@ -989,6 +990,45 @@ const CONFIRM_ACCOUNT_DELETION = gql`
   }
 `;
 
+const GOOGLE_SHEETS_INTEGRATION_STATUS = gql`
+  query GoogleSheetsIntegrationStatus {
+    googleSheetsIntegrationStatus {
+      isEnabled
+      spreadsheetUrl
+      lastSync
+    }
+  }
+`;
+
+const ENABLE_GOOGLE_SHEETS_INTEGRATION = gql`
+  mutation EnableGoogleSheetsIntegration($input: GoogleSheetsAuthInput!) {
+    enableGoogleSheetsIntegration(input: $input) {
+      success
+      error
+      spreadsheetUrl
+    }
+  }
+`;
+
+const DISABLE_GOOGLE_SHEETS_INTEGRATION = gql`
+  mutation DisableGoogleSheetsIntegration {
+    disableGoogleSheetsIntegration {
+      success
+      error
+    }
+  }
+`;
+
+const SYNC_GOOGLE_SHEETS = gql`
+  mutation SyncGoogleSheets {
+    syncGoogleSheets {
+      success
+      error
+    }
+  }
+`;
+
+
 export class FieldServiceSDK {
   private client: FieldServiceClient;
   private apolloClient: ApolloClient<NormalizedCacheObject>;
@@ -1470,4 +1510,29 @@ export class FieldServiceSDK {
     });
   }
 
+  public async getGoogleSheetsIntegrationStatus() {
+    return this.apolloClient.query({
+      query: GOOGLE_SHEETS_INTEGRATION_STATUS
+    });
+  }
+
+  public async enableGoogleSheetsIntegration(input: GoogleSheetsAuthInput) {
+    return this.apolloClient.mutate({
+      mutation: ENABLE_GOOGLE_SHEETS_INTEGRATION,
+      variables: { input }
+    });
+  }
+
+  public async disableGoogleSheetsIntegration() {
+    return this.apolloClient.mutate({
+      mutation: DISABLE_GOOGLE_SHEETS_INTEGRATION,
+    });
+  }
+
+  public async syncGoogleSheets() {
+    return this.apolloClient.mutate({
+      mutation: SYNC_GOOGLE_SHEETS,
+    });
+  }
+  
 } 
