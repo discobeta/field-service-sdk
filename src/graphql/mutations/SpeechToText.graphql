@@ -1,0 +1,10 @@
+mutation SpeechToText($input: SpeechToTextInput!) {
+  speechToText(input: $input) {
+  result {
+    success
+    transcription
+    confidence
+    error
+  }
+  }
+}

@@ -9,19 +9,14 @@ import {
   GetBusinessProfileQuery, GetCurrentAccountQuery, SignupInput, FileUploadInput,
   DeviceRegistrationInput, InviteUserInput, InvitationResponseInput,
   UpdateOrRegisterDeviceDocument,
-  UpdateOrRegisterDeviceMutation,
   UserProfileInput,
-  UserProfileType,
-  UserType,
-  AccountMemberType,
-  AccountType,
-  ClientType,
-  JobType,
-  EstimateType,
-  UnsubscribeFromEmailsDocument,
   GetSubscriptionPlansQuery,
-  SubscriptionPlanType,
-  GoogleSheetsAuthInput
+  GoogleSheetsAuthInput,
+  TextToSpeechInput,
+  SpeechToTextInput,
+  DialogflowInput,
+  GetVoicesInput,
+  VertexChatCompletionInput
 } from './generated/graphql';
 
 // Import the GraphQL documents directly
@@ -1028,6 +1023,114 @@ const SYNC_GOOGLE_SHEETS = gql`
   }
 `;
 
+const TEXT_TO_SPEECH = gql`
+  mutation TextToSpeech($input: TextToSpeechInput!) {
+    textToSpeech(input: $input) {
+    result {
+      success
+      audioContent
+      audioEncoding
+      textLength
+      error
+    }
+    }
+  }
+`;
+
+const SPEECH_TO_TEXT = gql`
+  mutation SpeechToText($input: SpeechToTextInput!) {
+    speechToText(input: $input) {
+    result {
+      success
+      transcription
+      confidence
+      error
+    }
+    }
+  }
+`;
+
+const DIALOGFLOW_DETECT_INTENT = gql`
+  mutation DialogflowDetectIntent($input: DialogflowInput!) {
+    dialogflowDetectIntent(input: $input) {
+    result {
+      success
+      fulfillmentText
+      intentDisplayName
+      intentConfidence
+      action
+      parameters
+      error
+    }
+    }
+  }
+`;
+
+const GET_AVAILABLE_VOICES = gql`
+  query GetAvailableVoices($input: GetVoicesInput!) {
+    getAvailableVoices(input: $input) {
+      result {
+        success
+        error
+        voices {
+          name
+          ssmlGender
+          naturalSampleRateHertz
+        }
+      }
+    }
+  }
+`;
+
+const INVOICES = gql`
+  query invoices {
+    invoices {
+        id
+        date
+        dueDate
+        status
+        total
+        applyTaxes
+        createdAt
+        updatedAt
+        job {
+          id
+          title
+        }
+        lineItems {
+          id
+          title
+          description
+          price
+          type
+          taxType
+        }
+      
+    }
+  }
+`;
+
+const VERTEX_CHAT_COMPLETION = gql`
+  mutation VertexChatCompletionResult($input: VertexChatCompletionInput!) {
+    vertexChatCompletion(input: $input) {
+      result {
+        success
+        content
+        model
+        finishReason
+        error
+        toolCalls {
+          id
+          type
+          function {
+            name
+            arguments
+          }
+        }
+      }
+    }
+  }
+`;
 
 export class FieldServiceSDK {
   private client: FieldServiceClient;
@@ -1534,5 +1637,86 @@ export class FieldServiceSDK {
       mutation: SYNC_GOOGLE_SHEETS,
     });
   }
+
+  public async textToSpeech(input: TextToSpeechInput) {
+    return this.apolloClient.mutate({
+      mutation: TEXT_TO_SPEECH,
+      variables: { input }
+    });
+  }
+
+  public async speechToText(input: SpeechToTextInput) {
+    return this.apolloClient.mutate({
+      mutation: SPEECH_TO_TEXT,
+      variables: { input }
+    });
+  }
+
+  public async dialogflowDetectIntent(input: DialogflowInput) {
+    return this.apolloClient.mutate({
+      mutation: DIALOGFLOW_DETECT_INTENT,
+      variables: { input }
+    });
+  }
+
+  public async getAvailableVoices(input: GetVoicesInput) {
+    return this.apolloClient.query({
+      query: GET_AVAILABLE_VOICES,
+      variables: { input }
+    });
+  }
   
+  public async invoices(status?: string) {
+    return this.apolloClient.query({
+      query: INVOICES,
+      variables: { status }
+    });
+  }
+
+  public async vertexChatCompletion(input: VertexChatCompletionInput) {
+    return this.apolloClient.mutate({
+      mutation: VERTEX_CHAT_COMPLETION,
+      variables: { input }
+    });
+  }
 } 
+
+// logout
+// getClients
+// getClient
+// createClient
+// updateClient
+// deleteClient
+// getJobs
+// getJob
+// createJob
+// updateJob
+// deleteJob
+// getEstimatesForJob
+// getEstimate
+// createEstimate
+// updateEstimate
+// deleteEstimate
+// getInvoicesForJob
+// getInvoice
+// createInvoice
+// updateInvoice
+// deleteInvoice
+// getBusinessProfile
+// updateBusinessProfile
+// uploadFile
+// registerDevice
+// updateOrRegisterDevice
+// getAccountMembers
+// getPendingInvitations
+// getMyInvitations
+// inviteUser
+// acceptInvitation
+// rejectInvitation
+// removeMember
+// cancelInvitation
+// exportData
+// submitFeedback
+// getGoogleSheetsIntegrationStatus
+// enableGoogleSheetsIntegration
+// disableGoogleSheetsIntegration

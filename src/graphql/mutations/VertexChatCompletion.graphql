@@ -1,0 +1,19 @@
+mutation VertexChatCompletionResult($input: VertexChatCompletionInput!) {
+  vertexChatCompletion(input: $input) {
+    result {
+      success
+      content
+      model
+      finishReason
+      error
+      toolCalls {
+        id
+        type
+        function {
+          name
+          arguments
+        }
+      }
+    }
+  }
+}

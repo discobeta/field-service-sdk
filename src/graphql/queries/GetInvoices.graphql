@@ -1,0 +1,5 @@
+query GetInvoices($status: String) {
+  invoices(status: $status) {
+    ...InvoiceFragment
+  }
+}
