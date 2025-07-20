@@ -1,6 +1,5 @@
-mutation GenerateDocumentPDF($jobId: ID!, $documentId: ID!, $documentType: String!) {
+mutation GenerateDocumentPDF($documentId: ID!, $documentType: String!) {
   generateDocumentPdf(
-    jobId: $jobId
     documentId: $documentId
     documentType: $documentType
   ) {

@@ -1,0 +1,11 @@
+query GetEstimates {
+  estimates {
+    id
+    date
+    status
+    total
+    applyTaxes
+    createdAt
+    updatedAt
+  }
+}

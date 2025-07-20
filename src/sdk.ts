@@ -16,7 +16,8 @@ import {
   SpeechToTextInput,
   DialogflowInput,
   GetVoicesInput,
-  VertexChatCompletionInput
+  VertexChatCompletionInput,
+  GetEstimatesQuery
 } from './generated/graphql';
 
 // Import the GraphQL documents directly
@@ -651,9 +652,8 @@ const TOKEN_AUTH = gql`
 `;
 
 const GENERATE_DOCUMENT_PDF = gql`
-  mutation GenerateDocumentPDF($jobId: ID!, $documentId: ID!, $documentType: String!) {
+  mutation GenerateDocumentPDF($documentId: ID!, $documentType: String!) {
     generateDocumentPdf(
-      jobId: $jobId
       documentId: $documentId
       documentType: $documentType
     ) {
@@ -1132,6 +1132,20 @@ const VERTEX_CHAT_COMPLETION = gql`
   }
 `;
 
+const GET_ESTIMATES = gql`  
+  query GetEstimates {
+    estimates {
+      id
+      date
+      status
+      total
+      applyTaxes
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
 export class FieldServiceSDK {
   private client: FieldServiceClient;
   private apolloClient: ApolloClient<NormalizedCacheObject>;
@@ -1325,6 +1339,13 @@ export class FieldServiceSDK {
     });
   }
 
+  public async estimates(status?: string) {
+    return this.apolloClient.query<GetEstimatesQuery>({
+      query: GET_ESTIMATES,
+      variables: { status }
+    });
+  }
+
   // Invoices
   public async getInvoicesForJob(jobId: string) {
     return this.apolloClient.query<GetInvoicesForJobQuery>({
@@ -1408,11 +1429,10 @@ export class FieldServiceSDK {
     });
   }
 
-  public async generateDocumentPdf(jobId: string, documentId: string, documentType: string) {
+  public async generateDocumentPdf(documentId: string, documentType: string) {
     const result = await this.apolloClient.mutate({
       mutation: GENERATE_DOCUMENT_PDF,
       variables: {
-        jobId,
         documentId,
         documentType
       }
@@ -1673,50 +1693,12 @@ export class FieldServiceSDK {
     });
   }
 
+  //vertex
   public async vertexChatCompletion(input: VertexChatCompletionInput) {
     return this.apolloClient.mutate({
       mutation: VERTEX_CHAT_COMPLETION,
       variables: { input }
     });
   }
+  
 } 
-
-// logout
-// getClients
-// getClient
-// createClient
-// updateClient
-// deleteClient
-// getJobs
-// getJob
-// createJob
-// updateJob
-// deleteJob
-// getEstimatesForJob
-// getEstimate
-// createEstimate
-// updateEstimate
-// deleteEstimate
-// getInvoicesForJob
-// getInvoice
-// createInvoice
-// updateInvoice
-// deleteInvoice
-// getBusinessProfile
-// updateBusinessProfile
-// uploadFile
-// registerDevice
-// updateOrRegisterDevice
-// getAccountMembers
-// getPendingInvitations
-// getMyInvitations
-// inviteUser
-// acceptInvitation
-// rejectInvitation
-// removeMember
-// cancelInvitation
-// exportData
-// submitFeedback
-// getGoogleSheetsIntegrationStatus
-// enableGoogleSheetsIntegration
-// disableGoogleSheetsIntegration
