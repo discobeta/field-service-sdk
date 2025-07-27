@@ -1,11 +1,5 @@
 query GetUserProfile {
   userProfile {
-    id
-    firstName
-    lastName
-    timezone
-    phoneNumber
-    createdAt
-    updatedAt
+    ...UserProfileFragment
   }
 }

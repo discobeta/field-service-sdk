@@ -1,0 +1,16 @@
+query Invoices($status: String) {
+  invoices(status: $status) {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  job
+  date
+  dueDate
+  status
+  total
+  applyTaxes
+  lineItems
+  }
+}

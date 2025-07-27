@@ -1,0 +1,16 @@
+query InvoicesForJob($jobId: ID!) {
+  invoicesForJob(jobId: $jobId) {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  job
+  date
+  dueDate
+  status
+  total
+  applyTaxes
+  lineItems
+  }
+}

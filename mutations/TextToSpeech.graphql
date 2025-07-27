@@ -1,0 +1,11 @@
+mutation TextToSpeech($input: TextToSpeechInput!) {
+  textToSpeech(input: $input) {
+  result {
+    success
+    audioContent
+    audioEncoding
+    textLength
+    error
+  }
+  }
+}

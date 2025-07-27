@@ -1,0 +1,15 @@
+query Estimates($status: String) {
+  estimates(status: $status) {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  job
+  date
+  status
+  total
+  applyTaxes
+  lineItems
+  }
+}

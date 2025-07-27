@@ -1,0 +1,6 @@
+mutation UpdateSubscription($planId: ID!, $prorationBehavior: String) {
+  updateSubscription(planId: $planId, prorationBehavior: $prorationBehavior) {
+  success
+  error
+  }
+}

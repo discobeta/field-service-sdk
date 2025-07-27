@@ -1,0 +1,7 @@
+mutation ExportData {
+  exportData {
+  success
+  message
+  downloadUrl
+  }
+}

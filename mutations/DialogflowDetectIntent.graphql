@@ -1,0 +1,13 @@
+mutation DialogflowDetectIntent($input: DialogflowInput!) {
+  dialogflowDetectIntent(input: $input) {
+  result {
+    success
+    fulfillmentText
+    intentDisplayName
+    intentConfidence
+    action
+    parameters
+    error
+  }
+  }
+}

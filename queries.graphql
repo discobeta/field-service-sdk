@@ -1,0 +1,372 @@
+# Generated GraphQL Queries
+
+query AvailableVoices($input: GetVoicesInput) {
+  availableVoices(input: $input) {
+  result {
+    success
+    voices {
+      name
+      ssmlGender
+      naturalSampleRateHertz
+    }
+    error
+  }
+  }
+}
+query CurrentAccount {
+  currentAccount {
+  id
+  name
+  owner {
+    id
+    email
+    firstName
+    lastName
+  }
+  isActive
+  subscriptionPlan {
+    id
+    name
+    description
+    price
+    currency
+    period
+    trialPeriodDays
+    isActive
+    maxJobs
+    maxClients
+    maxTeamMembers
+    createdAt
+    updatedAt
+  }
+  subscriptionEndDate
+  members {
+    isAdmin
+    id
+    createdAt
+    updatedAt
+  }
+  createdAt
+  updatedAt
+  }
+}
+query AccountMembers {
+  accountMembers {
+  user {
+    id
+    email
+    firstName
+    lastName
+  }
+  isAdmin
+  id
+  createdAt
+  updatedAt
+  }
+}
+query PendingInvitations {
+  pendingInvitations {
+  invitedBy
+  email
+  status
+  id
+  }
+}
+query Clients {
+  clients {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  name
+  email
+  phone
+  address1
+  address2
+  city
+  state
+  zipCode
+  notes
+  locationLatitude
+  locationLongitude
+  jobs
+  }
+}
+query Client($id: ID!) {
+  client(id: $id) {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  name
+  email
+  phone
+  address1
+  address2
+  city
+  state
+  zipCode
+  notes
+  locationLatitude
+  locationLongitude
+  jobs
+  }
+}
+query BusinessProfile {
+  businessProfile {
+  id
+  createdAt
+  updatedAt
+  account
+  name
+  email
+  phone
+  website
+  logo
+  address1
+  address2
+  city
+  state
+  zipCode
+  locationLatitude
+  locationLongitude
+  taxServiceType
+  }
+}
+query Jobs($status: String, $clientId: ID, $assignedToId: ID) {
+  jobs(status: $status, clientId: $clientId, assignedToId: $assignedToId) {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  assignedTo
+  client
+  title
+  description
+  status
+  scheduledDate
+  dueDate
+  estimates
+  invoices
+  }
+}
+query Job($id: ID!) {
+  job(id: $id) {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  assignedTo
+  client
+  title
+  description
+  status
+  scheduledDate
+  dueDate
+  estimates
+  invoices
+  }
+}
+query Estimate($id: ID!) {
+  estimate(id: $id) {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  job
+  date
+  status
+  total
+  applyTaxes
+  lineItems
+  }
+}
+query InvoicesForJob($jobId: ID!) {
+  invoicesForJob(jobId: $jobId) {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  job
+  date
+  dueDate
+  status
+  total
+  applyTaxes
+  lineItems
+  }
+}
+query Invoice($id: ID!) {
+  invoice(id: $id) {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  job
+  date
+  dueDate
+  status
+  total
+  applyTaxes
+  lineItems
+  }
+}
+query EstimatesForJob($jobId: ID!) {
+  estimatesForJob(jobId: $jobId) {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  job
+  date
+  status
+  total
+  applyTaxes
+  lineItems
+  }
+}
+query Estimates($status: String) {
+  estimates(status: $status) {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  job
+  date
+  status
+  total
+  applyTaxes
+  lineItems
+  }
+}
+query MyInvitations {
+  myInvitations {
+  invitedBy {
+    id
+    email
+    firstName
+    lastName
+  }
+  email
+  status
+  id
+  account {
+    id
+    name
+    isActive
+    subscriptionPlan {
+      id
+      name
+      description
+      price
+      currency
+      period
+      trialPeriodDays
+      isActive
+      maxJobs
+      maxClients
+      maxTeamMembers
+      createdAt
+      updatedAt
+    }
+    subscriptionEndDate
+    members {
+      isAdmin
+      id
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+  token
+  }
+}
+query UserProfile {
+  userProfile {
+  id
+  firstName
+  lastName
+  phoneNumber
+  timezone
+  agentLanguageCode
+  agentVoice
+  createdAt
+  updatedAt
+  }
+}
+query SubscriptionPlans {
+  subscriptionPlans {
+  id
+  name
+  description
+  price
+  currency
+  period
+  trialPeriodDays
+  isActive
+  maxJobs
+  maxClients
+  maxTeamMembers
+  createdAt
+  updatedAt
+  }
+}
+query MySubscription {
+  mySubscription {
+  id
+  plan {
+    id
+    name
+    description
+    price
+    currency
+    period
+    trialPeriodDays
+    isActive
+    maxJobs
+    maxClients
+    maxTeamMembers
+    createdAt
+    updatedAt
+  }
+  status
+  currentPeriodStart
+  currentPeriodEnd
+  cancelAtPeriodEnd
+  createdAt
+  updatedAt
+  }
+}
+query GoogleSheetsIntegrationStatus {
+  googleSheetsIntegrationStatus {
+  isEnabled
+  spreadsheetUrl
+  lastSync
+  }
+}
+query Invoices($status: String) {
+  invoices(status: $status) {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  job
+  date
+  dueDate
+  status
+  total
+  applyTaxes
+  lineItems
+  }
+}

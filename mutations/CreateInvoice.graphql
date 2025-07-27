@@ -1,0 +1,20 @@
+mutation CreateInvoice($input: InvoiceInput!) {
+  createInvoice(input: $input) {
+  invoice {
+    id
+    createdAt
+    updatedAt
+    account
+    createdBy
+    job
+    date
+    dueDate
+    status
+    total
+    applyTaxes
+    lineItems
+  }
+  success
+  message
+  }
+}

@@ -28,3 +28,27 @@ exec('cd ../../ && python manage.py graphql_schema --out clients/sdk-ts/src/sche
   console.log(`Schema successfully extracted to ${schemaPath}`);
   console.log('You can now run "npm run generate" to update the TypeScript types');
 }); 
+
+// also run these commands to update the schema
+// ./manage.py generate_graphql_files --single-file --output-dir clients/sdk-ts --depth 20
+//./manage.py generate_graphql_files --sdk-file --output-dir clients/sdk-ts --depth 20
+
+exec('cd ../../ && python manage.py generate_graphql_files --single-file --output-dir clients/sdk-ts --depth 20', (error, stdout, stderr) => {
+  if (error) {
+    console.error(`Error executing command: ${error.message}`);
+    return;
+  }
+  
+  console.log(`Schema successfully extracted to ${schemaPath}`);
+  console.log('You can now run "npm run generate" to update the TypeScript types');
+}); 
+
+exec('cd ../../ && python manage.py generate_graphql_files --sdk-file --output-dir clients/sdk-ts --depth 20', (error, stdout, stderr) => {
+  if (error) {
+    console.error(`Error executing command: ${error.message}`);
+    return;
+  }
+  
+  console.log(`Schema successfully extracted to ${schemaPath}`);
+  console.log('You can now run "npm run generate" to update the TypeScript types');
+}); 

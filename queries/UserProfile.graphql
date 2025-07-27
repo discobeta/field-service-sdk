@@ -1,4 +1,5 @@
-fragment UserProfileFragment on UserProfileType {
+query UserProfile {
+  userProfile {
   id
   firstName
   lastName
@@ -8,4 +9,5 @@ fragment UserProfileFragment on UserProfileType {
   agentVoice
   createdAt
   updatedAt
-} 
+  }
+}

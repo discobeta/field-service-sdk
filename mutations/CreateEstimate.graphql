@@ -1,0 +1,19 @@
+mutation CreateEstimate($input: EstimateInput!) {
+  createEstimate(input: $input) {
+  estimate {
+    id
+    createdAt
+    updatedAt
+    account
+    createdBy
+    job
+    date
+    status
+    total
+    applyTaxes
+    lineItems
+  }
+  success
+  message
+  }
+}

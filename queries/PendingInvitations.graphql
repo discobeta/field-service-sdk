@@ -1,0 +1,8 @@
+query PendingInvitations {
+  pendingInvitations {
+  invitedBy
+  email
+  status
+  id
+  }
+}

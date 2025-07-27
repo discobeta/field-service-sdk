@@ -1,0 +1,15 @@
+query EstimatesForJob($jobId: ID!) {
+  estimatesForJob(jobId: $jobId) {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  job
+  date
+  status
+  total
+  applyTaxes
+  lineItems
+  }
+}

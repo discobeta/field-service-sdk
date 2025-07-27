@@ -1,0 +1,19 @@
+mutation UpdateEstimate($id: ID!, $input: EstimateInput!) {
+  updateEstimate(id: $id, input: $input) {
+  estimate {
+    id
+    createdAt
+    updatedAt
+    account
+    createdBy
+    job
+    date
+    status
+    total
+    applyTaxes
+    lineItems
+  }
+  success
+  message
+  }
+}

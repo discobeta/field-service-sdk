@@ -1,0 +1,16 @@
+query Invoice($id: ID!) {
+  invoice(id: $id) {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  job
+  date
+  dueDate
+  status
+  total
+  applyTaxes
+  lineItems
+  }
+}

@@ -1,0 +1,18 @@
+query Job($id: ID!) {
+  job(id: $id) {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  assignedTo
+  client
+  title
+  description
+  status
+  scheduledDate
+  dueDate
+  estimates
+  invoices
+  }
+}

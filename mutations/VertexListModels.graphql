@@ -1,0 +1,13 @@
+mutation VertexListModels {
+  vertexListModels {
+  result {
+    success
+    models {
+      id
+      created
+      ownedBy
+    }
+    error
+  }
+  }
+}

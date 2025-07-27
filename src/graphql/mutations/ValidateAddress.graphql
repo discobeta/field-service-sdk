@@ -1,0 +1,13 @@
+mutation ValidateAddress($input: AddressValidationInput!) {
+  validateAddress(input: $input) {
+    success
+    message
+    validationResult {
+      isValid
+      formattedAddress
+      placeId
+      rawComponents
+      message
+    }
+  }
+}

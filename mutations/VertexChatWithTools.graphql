@@ -1,0 +1,19 @@
+mutation VertexChatWithTools($input: VertexChatWithToolsInput!) {
+  vertexChatWithTools(input: $input) {
+  result {
+    success
+    content
+    toolCalls {
+      id
+      type
+      function {
+        name
+        arguments
+      }
+    }
+    model
+    finishReason
+    error
+  }
+  }
+}

@@ -1,0 +1,20 @@
+mutation UpdateInvoice($id: ID!, $input: InvoiceInput!) {
+  updateInvoice(id: $id, input: $input) {
+  invoice {
+    id
+    createdAt
+    updatedAt
+    account
+    createdBy
+    job
+    date
+    dueDate
+    status
+    total
+    applyTaxes
+    lineItems
+  }
+  success
+  message
+  }
+}
