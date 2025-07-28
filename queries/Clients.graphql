@@ -3,8 +3,6 @@ query Clients {
   id
   createdAt
   updatedAt
-  account
-  createdBy
   name
   email
   phone
@@ -16,6 +14,60 @@ query Clients {
   notes
   locationLatitude
   locationLongitude
-  jobs
+  jobs {
+    id
+    createdAt
+    updatedAt
+    title
+    description
+    status
+    scheduledDate
+    dueDate
+    estimates {
+      id
+      createdAt
+      updatedAt
+      date
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+      }
+    }
+    invoices {
+      id
+      createdAt
+      updatedAt
+      date
+      dueDate
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+      }
+    }
+  }
+  pk
+  address1
+  address2
+  zipCode
+  locationLatitude
+  locationLongitude
   }
 }

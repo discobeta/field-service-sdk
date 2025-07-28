@@ -86,8 +86,6 @@ query Clients {
   id
   createdAt
   updatedAt
-  account
-  createdBy
   name
   email
   phone
@@ -99,7 +97,61 @@ query Clients {
   notes
   locationLatitude
   locationLongitude
-  jobs
+  jobs {
+    id
+    createdAt
+    updatedAt
+    title
+    description
+    status
+    scheduledDate
+    dueDate
+    estimates {
+      id
+      createdAt
+      updatedAt
+      date
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+      }
+    }
+    invoices {
+      id
+      createdAt
+      updatedAt
+      date
+      dueDate
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+      }
+    }
+  }
+  pk
+  address1
+  address2
+  zipCode
+  locationLatitude
+  locationLongitude
   }
 }`;
 
@@ -109,8 +161,6 @@ query Client($id: ID!) {
   id
   createdAt
   updatedAt
-  account
-  createdBy
   name
   email
   phone
@@ -122,7 +172,61 @@ query Client($id: ID!) {
   notes
   locationLatitude
   locationLongitude
-  jobs
+  jobs {
+    id
+    createdAt
+    updatedAt
+    title
+    description
+    status
+    scheduledDate
+    dueDate
+    estimates {
+      id
+      createdAt
+      updatedAt
+      date
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+      }
+    }
+    invoices {
+      id
+      createdAt
+      updatedAt
+      date
+      dueDate
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+      }
+    }
+  }
+  pk
+  address1
+  address2
+  zipCode
+  locationLatitude
+  locationLongitude
   }
 }`;
 
@@ -155,17 +259,72 @@ query Jobs($status: String, $clientId: ID, $assignedToId: ID) {
   id
   createdAt
   updatedAt
-  account
-  createdBy
-  assignedTo
-  client
+  client {
+    id
+    createdAt
+    updatedAt
+    name
+    email
+    phone
+    address1
+    address2
+    city
+    state
+    zipCode
+    notes
+    locationLatitude
+    locationLongitude
+    pk
+    address1
+    address2
+    zipCode
+    locationLatitude
+    locationLongitude
+  }
   title
   description
   status
   scheduledDate
   dueDate
-  estimates
-  invoices
+  estimates {
+    id
+    createdAt
+    updatedAt
+    date
+    status
+    total
+    applyTaxes
+    lineItems {
+      id
+      createdAt
+      updatedAt
+      title
+      description
+      price
+      type
+      taxType
+    }
+  }
+  invoices {
+    id
+    createdAt
+    updatedAt
+    date
+    dueDate
+    status
+    total
+    applyTaxes
+    lineItems {
+      id
+      createdAt
+      updatedAt
+      title
+      description
+      price
+      type
+      taxType
+    }
+  }
   }
 }`;
 
@@ -175,17 +334,72 @@ query Job($id: ID!) {
   id
   createdAt
   updatedAt
-  account
-  createdBy
-  assignedTo
-  client
+  client {
+    id
+    createdAt
+    updatedAt
+    name
+    email
+    phone
+    address1
+    address2
+    city
+    state
+    zipCode
+    notes
+    locationLatitude
+    locationLongitude
+    pk
+    address1
+    address2
+    zipCode
+    locationLatitude
+    locationLongitude
+  }
   title
   description
   status
   scheduledDate
   dueDate
-  estimates
-  invoices
+  estimates {
+    id
+    createdAt
+    updatedAt
+    date
+    status
+    total
+    applyTaxes
+    lineItems {
+      id
+      createdAt
+      updatedAt
+      title
+      description
+      price
+      type
+      taxType
+    }
+  }
+  invoices {
+    id
+    createdAt
+    updatedAt
+    date
+    dueDate
+    status
+    total
+    applyTaxes
+    lineItems {
+      id
+      createdAt
+      updatedAt
+      title
+      description
+      price
+      type
+      taxType
+    }
+  }
   }
 }`;
 
@@ -195,14 +409,72 @@ query Estimate($id: ID!) {
   id
   createdAt
   updatedAt
-  account
-  createdBy
-  job
+  job {
+    id
+    createdAt
+    updatedAt
+    client {
+      id
+      createdAt
+      updatedAt
+      name
+      email
+      phone
+      address1
+      address2
+      city
+      state
+      zipCode
+      notes
+      locationLatitude
+      locationLongitude
+      pk
+      address1
+      address2
+      zipCode
+      locationLatitude
+      locationLongitude
+    }
+    title
+    description
+    status
+    scheduledDate
+    dueDate
+    invoices {
+      id
+      createdAt
+      updatedAt
+      date
+      dueDate
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+      }
+    }
+  }
   date
   status
   total
   applyTaxes
-  lineItems
+  lineItems {
+    id
+    createdAt
+    updatedAt
+    title
+    description
+    price
+    type
+    taxType
+  }
   }
 }`;
 
@@ -212,15 +484,72 @@ query InvoicesForJob($jobId: ID!) {
   id
   createdAt
   updatedAt
-  account
-  createdBy
-  job
+  job {
+    id
+    createdAt
+    updatedAt
+    client {
+      id
+      createdAt
+      updatedAt
+      name
+      email
+      phone
+      address1
+      address2
+      city
+      state
+      zipCode
+      notes
+      locationLatitude
+      locationLongitude
+      pk
+      address1
+      address2
+      zipCode
+      locationLatitude
+      locationLongitude
+    }
+    title
+    description
+    status
+    scheduledDate
+    dueDate
+    estimates {
+      id
+      createdAt
+      updatedAt
+      date
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+      }
+    }
+  }
   date
   dueDate
   status
   total
   applyTaxes
-  lineItems
+  lineItems {
+    id
+    createdAt
+    updatedAt
+    title
+    description
+    price
+    type
+    taxType
+  }
   }
 }`;
 
@@ -230,15 +559,72 @@ query Invoice($id: ID!) {
   id
   createdAt
   updatedAt
-  account
-  createdBy
-  job
+  job {
+    id
+    createdAt
+    updatedAt
+    client {
+      id
+      createdAt
+      updatedAt
+      name
+      email
+      phone
+      address1
+      address2
+      city
+      state
+      zipCode
+      notes
+      locationLatitude
+      locationLongitude
+      pk
+      address1
+      address2
+      zipCode
+      locationLatitude
+      locationLongitude
+    }
+    title
+    description
+    status
+    scheduledDate
+    dueDate
+    estimates {
+      id
+      createdAt
+      updatedAt
+      date
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+      }
+    }
+  }
   date
   dueDate
   status
   total
   applyTaxes
-  lineItems
+  lineItems {
+    id
+    createdAt
+    updatedAt
+    title
+    description
+    price
+    type
+    taxType
+  }
   }
 }`;
 
@@ -248,14 +634,72 @@ query EstimatesForJob($jobId: ID!) {
   id
   createdAt
   updatedAt
-  account
-  createdBy
-  job
+  job {
+    id
+    createdAt
+    updatedAt
+    client {
+      id
+      createdAt
+      updatedAt
+      name
+      email
+      phone
+      address1
+      address2
+      city
+      state
+      zipCode
+      notes
+      locationLatitude
+      locationLongitude
+      pk
+      address1
+      address2
+      zipCode
+      locationLatitude
+      locationLongitude
+    }
+    title
+    description
+    status
+    scheduledDate
+    dueDate
+    invoices {
+      id
+      createdAt
+      updatedAt
+      date
+      dueDate
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+      }
+    }
+  }
   date
   status
   total
   applyTaxes
-  lineItems
+  lineItems {
+    id
+    createdAt
+    updatedAt
+    title
+    description
+    price
+    type
+    taxType
+  }
   }
 }`;
 
@@ -265,14 +709,72 @@ query Estimates($status: String) {
   id
   createdAt
   updatedAt
-  account
-  createdBy
-  job
+  job {
+    id
+    createdAt
+    updatedAt
+    client {
+      id
+      createdAt
+      updatedAt
+      name
+      email
+      phone
+      address1
+      address2
+      city
+      state
+      zipCode
+      notes
+      locationLatitude
+      locationLongitude
+      pk
+      address1
+      address2
+      zipCode
+      locationLatitude
+      locationLongitude
+    }
+    title
+    description
+    status
+    scheduledDate
+    dueDate
+    invoices {
+      id
+      createdAt
+      updatedAt
+      date
+      dueDate
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+      }
+    }
+  }
   date
   status
   total
   applyTaxes
-  lineItems
+  lineItems {
+    id
+    createdAt
+    updatedAt
+    title
+    description
+    price
+    type
+    taxType
+  }
   }
 }`;
 
@@ -398,15 +900,72 @@ query Invoices($status: String) {
   id
   createdAt
   updatedAt
-  account
-  createdBy
-  job
+  job {
+    id
+    createdAt
+    updatedAt
+    client {
+      id
+      createdAt
+      updatedAt
+      name
+      email
+      phone
+      address1
+      address2
+      city
+      state
+      zipCode
+      notes
+      locationLatitude
+      locationLongitude
+      pk
+      address1
+      address2
+      zipCode
+      locationLatitude
+      locationLongitude
+    }
+    title
+    description
+    status
+    scheduledDate
+    dueDate
+    estimates {
+      id
+      createdAt
+      updatedAt
+      date
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+      }
+    }
+  }
   date
   dueDate
   status
   total
   applyTaxes
-  lineItems
+  lineItems {
+    id
+    createdAt
+    updatedAt
+    title
+    description
+    price
+    type
+    taxType
+  }
   }
 }`;
 

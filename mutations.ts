@@ -92,8 +92,6 @@ mutation CreateClient($input: ClientInput!) {
     id
     createdAt
     updatedAt
-    account
-    createdBy
     name
     email
     phone
@@ -105,7 +103,61 @@ mutation CreateClient($input: ClientInput!) {
     notes
     locationLatitude
     locationLongitude
-    jobs
+    jobs {
+      id
+      createdAt
+      updatedAt
+      title
+      description
+      status
+      scheduledDate
+      dueDate
+      estimates {
+        id
+        createdAt
+        updatedAt
+        date
+        status
+        total
+        applyTaxes
+        lineItems {
+          id
+          createdAt
+          updatedAt
+          title
+          description
+          price
+          type
+          taxType
+        }
+      }
+      invoices {
+        id
+        createdAt
+        updatedAt
+        date
+        dueDate
+        status
+        total
+        applyTaxes
+        lineItems {
+          id
+          createdAt
+          updatedAt
+          title
+          description
+          price
+          type
+          taxType
+        }
+      }
+    }
+    pk
+    address1
+    address2
+    zipCode
+    locationLatitude
+    locationLongitude
   }
   success
   message
@@ -119,8 +171,6 @@ mutation UpdateClient($id: ID!, $input: ClientInput!) {
     id
     createdAt
     updatedAt
-    account
-    createdBy
     name
     email
     phone
@@ -132,7 +182,61 @@ mutation UpdateClient($id: ID!, $input: ClientInput!) {
     notes
     locationLatitude
     locationLongitude
-    jobs
+    jobs {
+      id
+      createdAt
+      updatedAt
+      title
+      description
+      status
+      scheduledDate
+      dueDate
+      estimates {
+        id
+        createdAt
+        updatedAt
+        date
+        status
+        total
+        applyTaxes
+        lineItems {
+          id
+          createdAt
+          updatedAt
+          title
+          description
+          price
+          type
+          taxType
+        }
+      }
+      invoices {
+        id
+        createdAt
+        updatedAt
+        date
+        dueDate
+        status
+        total
+        applyTaxes
+        lineItems {
+          id
+          createdAt
+          updatedAt
+          title
+          description
+          price
+          type
+          taxType
+        }
+      }
+    }
+    pk
+    address1
+    address2
+    zipCode
+    locationLatitude
+    locationLongitude
   }
   success
   message
@@ -207,17 +311,72 @@ mutation CreateJob($input: JobInput!) {
     id
     createdAt
     updatedAt
-    account
-    createdBy
-    assignedTo
-    client
+    client {
+      id
+      createdAt
+      updatedAt
+      name
+      email
+      phone
+      address1
+      address2
+      city
+      state
+      zipCode
+      notes
+      locationLatitude
+      locationLongitude
+      pk
+      address1
+      address2
+      zipCode
+      locationLatitude
+      locationLongitude
+    }
     title
     description
     status
     scheduledDate
     dueDate
-    estimates
-    invoices
+    estimates {
+      id
+      createdAt
+      updatedAt
+      date
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+      }
+    }
+    invoices {
+      id
+      createdAt
+      updatedAt
+      date
+      dueDate
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+      }
+    }
   }
   success
   message
@@ -231,17 +390,72 @@ mutation UpdateJob($id: ID!, $input: JobInput!) {
     id
     createdAt
     updatedAt
-    account
-    createdBy
-    assignedTo
-    client
+    client {
+      id
+      createdAt
+      updatedAt
+      name
+      email
+      phone
+      address1
+      address2
+      city
+      state
+      zipCode
+      notes
+      locationLatitude
+      locationLongitude
+      pk
+      address1
+      address2
+      zipCode
+      locationLatitude
+      locationLongitude
+    }
     title
     description
     status
     scheduledDate
     dueDate
-    estimates
-    invoices
+    estimates {
+      id
+      createdAt
+      updatedAt
+      date
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+      }
+    }
+    invoices {
+      id
+      createdAt
+      updatedAt
+      date
+      dueDate
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+      }
+    }
   }
   success
   message
@@ -263,14 +477,72 @@ mutation CreateEstimate($input: EstimateInput!) {
     id
     createdAt
     updatedAt
-    account
-    createdBy
-    job
+    job {
+      id
+      createdAt
+      updatedAt
+      client {
+        id
+        createdAt
+        updatedAt
+        name
+        email
+        phone
+        address1
+        address2
+        city
+        state
+        zipCode
+        notes
+        locationLatitude
+        locationLongitude
+        pk
+        address1
+        address2
+        zipCode
+        locationLatitude
+        locationLongitude
+      }
+      title
+      description
+      status
+      scheduledDate
+      dueDate
+      invoices {
+        id
+        createdAt
+        updatedAt
+        date
+        dueDate
+        status
+        total
+        applyTaxes
+        lineItems {
+          id
+          createdAt
+          updatedAt
+          title
+          description
+          price
+          type
+          taxType
+        }
+      }
+    }
     date
     status
     total
     applyTaxes
-    lineItems
+    lineItems {
+      id
+      createdAt
+      updatedAt
+      title
+      description
+      price
+      type
+      taxType
+    }
   }
   success
   message
@@ -284,14 +556,72 @@ mutation UpdateEstimate($id: ID!, $input: EstimateInput!) {
     id
     createdAt
     updatedAt
-    account
-    createdBy
-    job
+    job {
+      id
+      createdAt
+      updatedAt
+      client {
+        id
+        createdAt
+        updatedAt
+        name
+        email
+        phone
+        address1
+        address2
+        city
+        state
+        zipCode
+        notes
+        locationLatitude
+        locationLongitude
+        pk
+        address1
+        address2
+        zipCode
+        locationLatitude
+        locationLongitude
+      }
+      title
+      description
+      status
+      scheduledDate
+      dueDate
+      invoices {
+        id
+        createdAt
+        updatedAt
+        date
+        dueDate
+        status
+        total
+        applyTaxes
+        lineItems {
+          id
+          createdAt
+          updatedAt
+          title
+          description
+          price
+          type
+          taxType
+        }
+      }
+    }
     date
     status
     total
     applyTaxes
-    lineItems
+    lineItems {
+      id
+      createdAt
+      updatedAt
+      title
+      description
+      price
+      type
+      taxType
+    }
   }
   success
   message
@@ -313,15 +643,72 @@ mutation CreateInvoice($input: InvoiceInput!) {
     id
     createdAt
     updatedAt
-    account
-    createdBy
-    job
+    job {
+      id
+      createdAt
+      updatedAt
+      client {
+        id
+        createdAt
+        updatedAt
+        name
+        email
+        phone
+        address1
+        address2
+        city
+        state
+        zipCode
+        notes
+        locationLatitude
+        locationLongitude
+        pk
+        address1
+        address2
+        zipCode
+        locationLatitude
+        locationLongitude
+      }
+      title
+      description
+      status
+      scheduledDate
+      dueDate
+      estimates {
+        id
+        createdAt
+        updatedAt
+        date
+        status
+        total
+        applyTaxes
+        lineItems {
+          id
+          createdAt
+          updatedAt
+          title
+          description
+          price
+          type
+          taxType
+        }
+      }
+    }
     date
     dueDate
     status
     total
     applyTaxes
-    lineItems
+    lineItems {
+      id
+      createdAt
+      updatedAt
+      title
+      description
+      price
+      type
+      taxType
+    }
   }
   success
   message
@@ -335,15 +722,72 @@ mutation UpdateInvoice($id: ID!, $input: InvoiceInput!) {
     id
     createdAt
     updatedAt
-    account
-    createdBy
-    job
+    job {
+      id
+      createdAt
+      updatedAt
+      client {
+        id
+        createdAt
+        updatedAt
+        name
+        email
+        phone
+        address1
+        address2
+        city
+        state
+        zipCode
+        notes
+        locationLatitude
+        locationLongitude
+        pk
+        address1
+        address2
+        zipCode
+        locationLatitude
+        locationLongitude
+      }
+      title
+      description
+      status
+      scheduledDate
+      dueDate
+      estimates {
+        id
+        createdAt
+        updatedAt
+        date
+        status
+        total
+        applyTaxes
+        lineItems {
+          id
+          createdAt
+          updatedAt
+          title
+          description
+          price
+          type
+          taxType
+        }
+      }
+    }
     date
     dueDate
     status
     total
     applyTaxes
-    lineItems
+    lineItems {
+      id
+      createdAt
+      updatedAt
+      title
+      description
+      price
+      type
+      taxType
+    }
   }
   success
   message

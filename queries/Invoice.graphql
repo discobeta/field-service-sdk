@@ -3,14 +3,71 @@ query Invoice($id: ID!) {
   id
   createdAt
   updatedAt
-  account
-  createdBy
-  job
+  job {
+    id
+    createdAt
+    updatedAt
+    client {
+      id
+      createdAt
+      updatedAt
+      name
+      email
+      phone
+      address1
+      address2
+      city
+      state
+      zipCode
+      notes
+      locationLatitude
+      locationLongitude
+      pk
+      address1
+      address2
+      zipCode
+      locationLatitude
+      locationLongitude
+    }
+    title
+    description
+    status
+    scheduledDate
+    dueDate
+    estimates {
+      id
+      createdAt
+      updatedAt
+      date
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+      }
+    }
+  }
   date
   dueDate
   status
   total
   applyTaxes
-  lineItems
+  lineItems {
+    id
+    createdAt
+    updatedAt
+    title
+    description
+    price
+    type
+    taxType
+  }
   }
 }
