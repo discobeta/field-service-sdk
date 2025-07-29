@@ -1,0 +1,17 @@
+query SubscriptionPlans {
+  subscriptionPlans {
+  id
+  name
+  description
+  price
+  currency
+  period
+  trialPeriodDays
+  isActive
+  maxJobs
+  maxClients
+  maxTeamMembers
+  createdAt
+  updatedAt
+  }
+}

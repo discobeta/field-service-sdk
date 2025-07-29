@@ -1,0 +1,25 @@
+mutation UpdateBusinessProfile($input: BusinessProfileInput!) {
+  updateBusinessProfile(input: $input) {
+  businessProfile {
+    id
+    createdAt
+    updatedAt
+    account
+    name
+    email
+    phone
+    website
+    logo
+    address1
+    address2
+    city
+    state
+    zipCode
+    locationLatitude
+    locationLongitude
+    taxServiceType
+  }
+  success
+  message
+  }
+}

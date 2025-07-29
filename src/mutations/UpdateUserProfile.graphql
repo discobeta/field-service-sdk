@@ -1,0 +1,17 @@
+mutation UpdateUserProfile($input: UserProfileInput!) {
+  updateUserProfile(input: $input) {
+  userProfile {
+    id
+    firstName
+    lastName
+    phoneNumber
+    timezone
+    agentLanguageCode
+    agentVoice
+    createdAt
+    updatedAt
+  }
+  success
+  message
+  }
+}

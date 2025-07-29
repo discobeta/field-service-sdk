@@ -1,0 +1,26 @@
+query MySubscription {
+  mySubscription {
+  id
+  plan {
+    id
+    name
+    description
+    price
+    currency
+    period
+    trialPeriodDays
+    isActive
+    maxJobs
+    maxClients
+    maxTeamMembers
+    createdAt
+    updatedAt
+  }
+  status
+  currentPeriodStart
+  currentPeriodEnd
+  cancelAtPeriodEnd
+  createdAt
+  updatedAt
+  }
+}

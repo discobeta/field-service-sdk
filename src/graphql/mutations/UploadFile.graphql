@@ -1,7 +1,0 @@
-mutation UploadFile($input: FileUploadInput!) {
-  uploadFile(input: $input) {
-    success
-    message
-    fileUrl
-  }
-} 

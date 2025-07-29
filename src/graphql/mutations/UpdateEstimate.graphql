@@ -1,9 +1,0 @@
-mutation UpdateEstimate($id: ID!, $input: EstimateInput!) {
-  updateEstimate(id: $id, input: $input) {
-    estimate {
-      ...EstimateFragment
-    }
-    success
-    message
-  }
-} 

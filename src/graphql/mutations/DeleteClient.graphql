@@ -1,6 +1,0 @@
-mutation DeleteClient($id: ID!) {
-  deleteClient(id: $id) {
-    success
-    message
-  }
-} 

@@ -9,6 +9,8 @@ mutation TokenAuth($email: String!, $password: String!) {
   accountId
   payload
   refreshToken
+  success
+  message
   }
 }
 mutation Signup($input: SignupInput!) {
@@ -875,11 +877,14 @@ mutation CreateCheckoutSession($cancelUrl: String!, $planId: ID!, $successUrl: S
   createCheckoutSession(cancelUrl: $cancelUrl, planId: $planId, successUrl: $successUrl) {
   checkoutUrl
   sessionId
+  success
+  message
   }
 }
 mutation CancelSubscription {
   cancelSubscription {
   success
+  message
   }
 }
 mutation PreviewSubscriptionChange($planId: ID!, $prorationBehavior: String) {
@@ -892,13 +897,13 @@ mutation PreviewSubscriptionChange($planId: ID!, $prorationBehavior: String) {
     nextBillingDate
     total
   }
-  error
+  message
   }
 }
 mutation UpdateSubscription($planId: ID!, $prorationBehavior: String) {
   updateSubscription(planId: $planId, prorationBehavior: $prorationBehavior) {
   success
-  error
+  message
   }
 }
 mutation SubmitFeedback($description: String!, $pageUrl: String) {
@@ -929,20 +934,20 @@ mutation ConfirmAccountDeletion($otpCode: String!) {
 mutation EnableGoogleSheetsIntegration($input: GoogleSheetsAuthInput!) {
   enableGoogleSheetsIntegration(input: $input) {
   success
-  error
+  message
   spreadsheetUrl
   }
 }
 mutation DisableGoogleSheetsIntegration {
   disableGoogleSheetsIntegration {
   success
-  error
+  message
   }
 }
 mutation SyncGoogleSheets {
   syncGoogleSheets {
   success
-  error
+  message
   }
 }
 mutation SpeechToText($input: SpeechToTextInput!) {

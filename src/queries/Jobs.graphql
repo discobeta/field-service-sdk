@@ -1,0 +1,73 @@
+query Jobs($status: String, $clientId: ID, $assignedToId: ID) {
+  jobs(status: $status, clientId: $clientId, assignedToId: $assignedToId) {
+  id
+  createdAt
+  updatedAt
+  client {
+    id
+    createdAt
+    updatedAt
+    name
+    email
+    phone
+    address1
+    address2
+    city
+    state
+    zipCode
+    notes
+    locationLatitude
+    locationLongitude
+    pk
+    address1
+    address2
+    zipCode
+    locationLatitude
+    locationLongitude
+  }
+  title
+  description
+  status
+  scheduledDate
+  dueDate
+  estimates {
+    id
+    createdAt
+    updatedAt
+    date
+    status
+    total
+    applyTaxes
+    lineItems {
+      id
+      createdAt
+      updatedAt
+      title
+      description
+      price
+      type
+      taxType
+    }
+  }
+  invoices {
+    id
+    createdAt
+    updatedAt
+    date
+    dueDate
+    status
+    total
+    applyTaxes
+    lineItems {
+      id
+      createdAt
+      updatedAt
+      title
+      description
+      price
+      type
+      taxType
+    }
+  }
+  }
+}

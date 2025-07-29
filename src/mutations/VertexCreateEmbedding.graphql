@@ -1,0 +1,14 @@
+mutation VertexCreateEmbedding($input: VertexEmbeddingInput!) {
+  vertexCreateEmbedding(input: $input) {
+  result {
+    success
+    model
+    usage {
+      promptTokens
+      completionTokens
+      totalTokens
+    }
+    error
+  }
+  }
+}

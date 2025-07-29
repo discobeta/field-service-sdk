@@ -1,0 +1,17 @@
+mutation GetUserProfile {
+  getUserProfile {
+  userProfile {
+    id
+    firstName
+    lastName
+    phoneNumber
+    timezone
+    agentLanguageCode
+    agentVoice
+    createdAt
+    updatedAt
+  }
+  success
+  message
+  }
+}

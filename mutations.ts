@@ -10,6 +10,8 @@ mutation TokenAuth($email: String!, $password: String!) {
   accountId
   payload
   refreshToken
+  success
+  message
   }
 }`;
 
@@ -938,6 +940,8 @@ mutation CreateCheckoutSession($cancelUrl: String!, $planId: ID!, $successUrl: S
   createCheckoutSession(cancelUrl: $cancelUrl, planId: $planId, successUrl: $successUrl) {
   checkoutUrl
   sessionId
+  success
+  message
   }
 }`;
 
@@ -945,6 +949,7 @@ export const CANCEL_SUBSCRIPTION = gql`
 mutation CancelSubscription {
   cancelSubscription {
   success
+  message
   }
 }`;
 
@@ -959,7 +964,7 @@ mutation PreviewSubscriptionChange($planId: ID!, $prorationBehavior: String) {
     nextBillingDate
     total
   }
-  error
+  message
   }
 }`;
 
@@ -967,7 +972,7 @@ export const UPDATE_SUBSCRIPTION = gql`
 mutation UpdateSubscription($planId: ID!, $prorationBehavior: String) {
   updateSubscription(planId: $planId, prorationBehavior: $prorationBehavior) {
   success
-  error
+  message
   }
 }`;
 
@@ -1006,7 +1011,7 @@ export const ENABLE_GOOGLE_SHEETS_INTEGRATION = gql`
 mutation EnableGoogleSheetsIntegration($input: GoogleSheetsAuthInput!) {
   enableGoogleSheetsIntegration(input: $input) {
   success
-  error
+  message
   spreadsheetUrl
   }
 }`;
@@ -1015,7 +1020,7 @@ export const DISABLE_GOOGLE_SHEETS_INTEGRATION = gql`
 mutation DisableGoogleSheetsIntegration {
   disableGoogleSheetsIntegration {
   success
-  error
+  message
   }
 }`;
 
@@ -1023,7 +1028,7 @@ export const SYNC_GOOGLE_SHEETS = gql`
 mutation SyncGoogleSheets {
   syncGoogleSheets {
   success
-  error
+  message
   }
 }`;
 

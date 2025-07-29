@@ -1,7 +1,0 @@
-query GetPendingInvitations {
-  pendingInvitations {
-    id
-    email
-    status
-  }
-} 

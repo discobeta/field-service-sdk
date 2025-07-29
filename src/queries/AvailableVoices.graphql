@@ -1,0 +1,13 @@
+query AvailableVoices($input: GetVoicesInput) {
+  availableVoices(input: $input) {
+  result {
+    success
+    voices {
+      name
+      ssmlGender
+      naturalSampleRateHertz
+    }
+    error
+  }
+  }
+}
