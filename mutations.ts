@@ -1109,6 +1109,7 @@ mutation VertexChatCompletion($input: VertexChatCompletionInput!) {
         arguments
       }
     }
+    audioContent
   }
   }
 }`;
