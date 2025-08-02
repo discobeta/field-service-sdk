@@ -283,10 +283,10 @@ export const UPDATE_BUSINESS_PROFILE = gql`
 mutation UpdateBusinessProfile($input: BusinessProfileInput!) {
   updateBusinessProfile(input: $input) {
   businessProfile {
+    pk
     id
     createdAt
     updatedAt
-    account
     name
     email
     phone
@@ -297,9 +297,42 @@ mutation UpdateBusinessProfile($input: BusinessProfileInput!) {
     city
     state
     zipCode
-    locationLatitude
-    locationLongitude
     taxServiceType
+    account {
+      id
+      name
+      owner {
+        id
+        email
+        firstName
+        lastName
+      }
+      isActive
+      subscriptionPlan {
+        id
+        name
+        description
+        price
+        currency
+        period
+        trialPeriodDays
+        isActive
+        maxJobs
+        maxClients
+        maxTeamMembers
+        createdAt
+        updatedAt
+      }
+      subscriptionEndDate
+      members {
+        isAdmin
+        id
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
   }
   success
   message
@@ -843,10 +876,47 @@ mutation InviteUser($input: InviteUserInput!) {
   success
   message
   invitation {
-    invitedBy
+    id
+    invitedBy {
+      id
+      email
+      firstName
+      lastName
+    }
     email
     status
-    id
+    token
+    account {
+      id
+      name
+      isActive
+      subscriptionPlan {
+        id
+        name
+        description
+        price
+        currency
+        period
+        trialPeriodDays
+        isActive
+        maxJobs
+        maxClients
+        maxTeamMembers
+        createdAt
+        updatedAt
+      }
+      subscriptionEndDate
+      members {
+        isAdmin
+        id
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
   }
   }
 }`;

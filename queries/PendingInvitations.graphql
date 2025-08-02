@@ -1,8 +1,45 @@
 query PendingInvitations {
   pendingInvitations {
-  invitedBy
+  id
+  invitedBy {
+    id
+    email
+    firstName
+    lastName
+  }
   email
   status
-  id
+  token
+  account {
+    id
+    name
+    isActive
+    subscriptionPlan {
+      id
+      name
+      description
+      price
+      currency
+      period
+      trialPeriodDays
+      isActive
+      maxJobs
+      maxClients
+      maxTeamMembers
+      createdAt
+      updatedAt
+    }
+    subscriptionEndDate
+    members {
+      isAdmin
+      id
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+  createdAt
+  updatedAt
   }
 }

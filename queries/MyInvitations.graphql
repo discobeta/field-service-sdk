@@ -1,14 +1,15 @@
 query MyInvitations {
   myInvitations {
+  id
+  status
+  email
+  token
   invitedBy {
     id
     email
     firstName
     lastName
   }
-  email
-  status
-  id
   account {
     id
     name
@@ -38,6 +39,7 @@ query MyInvitations {
     createdAt
     updatedAt
   }
-  token
+  createdAt
+  updatedAt
   }
 }

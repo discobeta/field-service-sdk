@@ -73,10 +73,47 @@ query AccountMembers {
 export const PENDING_INVITATIONS = gql`
 query PendingInvitations {
   pendingInvitations {
-  invitedBy
+  id
+  invitedBy {
+    id
+    email
+    firstName
+    lastName
+  }
   email
   status
-  id
+  token
+  account {
+    id
+    name
+    isActive
+    subscriptionPlan {
+      id
+      name
+      description
+      price
+      currency
+      period
+      trialPeriodDays
+      isActive
+      maxJobs
+      maxClients
+      maxTeamMembers
+      createdAt
+      updatedAt
+    }
+    subscriptionEndDate
+    members {
+      isAdmin
+      id
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+  createdAt
+  updatedAt
   }
 }`;
 
@@ -233,10 +270,10 @@ query Client($id: ID!) {
 export const BUSINESS_PROFILE = gql`
 query BusinessProfile {
   businessProfile {
+  pk
   id
   createdAt
   updatedAt
-  account
   name
   email
   phone
@@ -247,9 +284,42 @@ query BusinessProfile {
   city
   state
   zipCode
-  locationLatitude
-  locationLongitude
   taxServiceType
+  account {
+    id
+    name
+    owner {
+      id
+      email
+      firstName
+      lastName
+    }
+    isActive
+    subscriptionPlan {
+      id
+      name
+      description
+      price
+      currency
+      period
+      trialPeriodDays
+      isActive
+      maxJobs
+      maxClients
+      maxTeamMembers
+      createdAt
+      updatedAt
+    }
+    subscriptionEndDate
+    members {
+      isAdmin
+      id
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
   }
 }`;
 
@@ -781,15 +851,16 @@ query Estimates($status: String) {
 export const MY_INVITATIONS = gql`
 query MyInvitations {
   myInvitations {
+  id
+  status
+  email
+  token
   invitedBy {
     id
     email
     firstName
     lastName
   }
-  email
-  status
-  id
   account {
     id
     name
@@ -819,7 +890,8 @@ query MyInvitations {
     createdAt
     updatedAt
   }
-  token
+  createdAt
+  updatedAt
   }
 }`;
 
