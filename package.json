@@ -1,6 +1,6 @@
 {
   "name": "field-service-sdk",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "type": "commonjs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -29,7 +29,7 @@
   "dependencies": {
     "@apollo/client": "^3.13.8",
     "graphql": "^16.11.0",
-    "react": "18.3.1"
+    "react": "^18.0.0"
   },
   "peerDependencies": {
     "react": "^18.0.0",
@@ -40,6 +40,17 @@
     "@graphql-codegen/typescript": "^4.1.6",
     "@graphql-codegen/typescript-operations": "^4.6.1",
     "@graphql-codegen/typescript-react-apollo": "^4.3.2",
+    "@types/babel__core": "^7.20.5",
+    "@types/babel__generator": "^7.27.0",
+    "@types/babel__template": "^7.4.4",
+    "@types/babel__traverse": "^7.28.0",
+    "@types/graceful-fs": "^4.1.9",
+    "@types/istanbul-lib-coverage": "^2.0.6",
+    "@types/istanbul-lib-report": "^3.0.3",
+    "@types/istanbul-reports": "^3.0.4",
+    "@types/stack-utils": "^2.0.3",
+    "@types/yargs": "^17.0.33",
+    "@types/yargs-parser": "^21.0.3",
     "typescript": "^5.3.3"
   },
   "files": [

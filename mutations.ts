@@ -1180,6 +1180,7 @@ mutation VertexChatCompletion($input: VertexChatCompletionInput!) {
       }
     }
     audioContent
+    transcription
   }
   }
 }`;
