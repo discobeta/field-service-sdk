@@ -21,4 +21,8 @@ export type {
   UserProfileInput,
   UserProfileType,
   SubscriptionPlanType,
+  VertexChatCompletionInput,
+  VertexChatWithToolsInput,
+  ToolCall,
+  ToolCallFunction,
 } from './generated/graphql';

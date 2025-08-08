@@ -5,7 +5,6 @@ import { FieldServiceClient, FieldServiceClientOptions } from './client';
 import * as types from './generated/graphql';
 
 // Import the GraphQL documents directly
-import { gql } from '@apollo/client';
 import * as mutations from '../mutations';
 import * as queries from '../queries';
 

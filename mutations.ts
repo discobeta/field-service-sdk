@@ -1181,6 +1181,12 @@ mutation VertexChatCompletion($input: VertexChatCompletionInput!) {
     }
     audioContent
     transcription
+    navigationActions {
+      action
+      screenType
+      recordId
+      isNewRecord
+    }
   }
   }
 }`;
