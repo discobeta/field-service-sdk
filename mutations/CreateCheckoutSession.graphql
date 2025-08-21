@@ -1,8 +1,0 @@
-mutation CreateCheckoutSession($cancelUrl: String!, $planId: ID!, $successUrl: String!) {
-  createCheckoutSession(cancelUrl: $cancelUrl, planId: $planId, successUrl: $successUrl) {
-  checkoutUrl
-  sessionId
-  success
-  message
-  }
-}

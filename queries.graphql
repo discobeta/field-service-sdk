@@ -13,6 +13,116 @@ query AvailableVoices($input: GetVoicesInput) {
   }
   }
 }
+query SubscriptionPlans {
+  subscriptionPlans {
+  id
+  name
+  description
+  price
+  currency
+  period
+  trialPeriodDays
+  isActive
+  maxJobs
+  maxClients
+  maxTeamMembers
+  createdAt
+  updatedAt
+  }
+}
+query MySubscription {
+  mySubscription {
+  id
+  plan {
+    id
+    name
+    description
+    price
+    currency
+    period
+    trialPeriodDays
+    isActive
+    maxJobs
+    maxClients
+    maxTeamMembers
+    createdAt
+    updatedAt
+  }
+  status
+  currentPeriodStart
+  currentPeriodEnd
+  cancelAtPeriodEnd
+  createdAt
+  updatedAt
+  }
+}
+query BusinessProfile {
+  businessProfile {
+  pk
+  id
+  createdAt
+  updatedAt
+  name
+  email
+  phone
+  website
+  logo
+  address1
+  address2
+  city
+  state
+  zipCode
+  taxServiceType
+  account {
+    id
+    name
+    owner {
+      id
+      email
+      firstName
+      lastName
+    }
+    isActive
+    subscriptionPlan {
+      id
+      name
+      description
+      price
+      currency
+      period
+      trialPeriodDays
+      isActive
+      maxJobs
+      maxClients
+      maxTeamMembers
+      createdAt
+      updatedAt
+    }
+    subscriptionEndDate
+    members {
+      isAdmin
+      id
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+  }
+}
+query UserProfile {
+  userProfile {
+  id
+  firstName
+  lastName
+  phoneNumber
+  timezone
+  agentLanguageCode
+  agentVoice
+  createdAt
+  updatedAt
+  }
+}
 query CurrentAccount {
   currentAccount {
   id
@@ -109,717 +219,6 @@ query PendingInvitations {
   updatedAt
   }
 }
-query Clients {
-  clients {
-  id
-  createdAt
-  updatedAt
-  name
-  email
-  phone
-  address1
-  address2
-  city
-  state
-  zipCode
-  notes
-  locationLatitude
-  locationLongitude
-  jobs {
-    id
-    createdAt
-    updatedAt
-    title
-    description
-    status
-    scheduledDate
-    dueDate
-    estimates {
-      id
-      createdAt
-      updatedAt
-      date
-      status
-      total
-      applyTaxes
-      lineItems {
-        id
-        createdAt
-        updatedAt
-        title
-        description
-        price
-        type
-        taxType
-      }
-    }
-    invoices {
-      id
-      createdAt
-      updatedAt
-      date
-      dueDate
-      status
-      total
-      applyTaxes
-      lineItems {
-        id
-        createdAt
-        updatedAt
-        title
-        description
-        price
-        type
-        taxType
-      }
-    }
-  }
-  pk
-  address1
-  address2
-  zipCode
-  locationLatitude
-  locationLongitude
-  }
-}
-query Client($id: ID!) {
-  client(id: $id) {
-  id
-  createdAt
-  updatedAt
-  name
-  email
-  phone
-  address1
-  address2
-  city
-  state
-  zipCode
-  notes
-  locationLatitude
-  locationLongitude
-  jobs {
-    id
-    createdAt
-    updatedAt
-    title
-    description
-    status
-    scheduledDate
-    dueDate
-    estimates {
-      id
-      createdAt
-      updatedAt
-      date
-      status
-      total
-      applyTaxes
-      lineItems {
-        id
-        createdAt
-        updatedAt
-        title
-        description
-        price
-        type
-        taxType
-      }
-    }
-    invoices {
-      id
-      createdAt
-      updatedAt
-      date
-      dueDate
-      status
-      total
-      applyTaxes
-      lineItems {
-        id
-        createdAt
-        updatedAt
-        title
-        description
-        price
-        type
-        taxType
-      }
-    }
-  }
-  pk
-  address1
-  address2
-  zipCode
-  locationLatitude
-  locationLongitude
-  }
-}
-query BusinessProfile {
-  businessProfile {
-  pk
-  id
-  createdAt
-  updatedAt
-  name
-  email
-  phone
-  website
-  logo
-  address1
-  address2
-  city
-  state
-  zipCode
-  taxServiceType
-  account {
-    id
-    name
-    owner {
-      id
-      email
-      firstName
-      lastName
-    }
-    isActive
-    subscriptionPlan {
-      id
-      name
-      description
-      price
-      currency
-      period
-      trialPeriodDays
-      isActive
-      maxJobs
-      maxClients
-      maxTeamMembers
-      createdAt
-      updatedAt
-    }
-    subscriptionEndDate
-    members {
-      isAdmin
-      id
-      createdAt
-      updatedAt
-    }
-    createdAt
-    updatedAt
-  }
-  }
-}
-query Jobs($status: String, $clientId: ID, $assignedToId: ID) {
-  jobs(status: $status, clientId: $clientId, assignedToId: $assignedToId) {
-  id
-  createdAt
-  updatedAt
-  client {
-    id
-    createdAt
-    updatedAt
-    name
-    email
-    phone
-    address1
-    address2
-    city
-    state
-    zipCode
-    notes
-    locationLatitude
-    locationLongitude
-    pk
-    address1
-    address2
-    zipCode
-    locationLatitude
-    locationLongitude
-  }
-  title
-  description
-  status
-  scheduledDate
-  dueDate
-  estimates {
-    id
-    createdAt
-    updatedAt
-    date
-    status
-    total
-    applyTaxes
-    lineItems {
-      id
-      createdAt
-      updatedAt
-      title
-      description
-      price
-      type
-      taxType
-    }
-  }
-  invoices {
-    id
-    createdAt
-    updatedAt
-    date
-    dueDate
-    status
-    total
-    applyTaxes
-    lineItems {
-      id
-      createdAt
-      updatedAt
-      title
-      description
-      price
-      type
-      taxType
-    }
-  }
-  }
-}
-query Job($id: ID!) {
-  job(id: $id) {
-  id
-  createdAt
-  updatedAt
-  client {
-    id
-    createdAt
-    updatedAt
-    name
-    email
-    phone
-    address1
-    address2
-    city
-    state
-    zipCode
-    notes
-    locationLatitude
-    locationLongitude
-    pk
-    address1
-    address2
-    zipCode
-    locationLatitude
-    locationLongitude
-  }
-  title
-  description
-  status
-  scheduledDate
-  dueDate
-  estimates {
-    id
-    createdAt
-    updatedAt
-    date
-    status
-    total
-    applyTaxes
-    lineItems {
-      id
-      createdAt
-      updatedAt
-      title
-      description
-      price
-      type
-      taxType
-    }
-  }
-  invoices {
-    id
-    createdAt
-    updatedAt
-    date
-    dueDate
-    status
-    total
-    applyTaxes
-    lineItems {
-      id
-      createdAt
-      updatedAt
-      title
-      description
-      price
-      type
-      taxType
-    }
-  }
-  }
-}
-query Estimate($id: ID!) {
-  estimate(id: $id) {
-  id
-  createdAt
-  updatedAt
-  job {
-    id
-    createdAt
-    updatedAt
-    client {
-      id
-      createdAt
-      updatedAt
-      name
-      email
-      phone
-      address1
-      address2
-      city
-      state
-      zipCode
-      notes
-      locationLatitude
-      locationLongitude
-      pk
-      address1
-      address2
-      zipCode
-      locationLatitude
-      locationLongitude
-    }
-    title
-    description
-    status
-    scheduledDate
-    dueDate
-    invoices {
-      id
-      createdAt
-      updatedAt
-      date
-      dueDate
-      status
-      total
-      applyTaxes
-      lineItems {
-        id
-        createdAt
-        updatedAt
-        title
-        description
-        price
-        type
-        taxType
-      }
-    }
-  }
-  date
-  status
-  total
-  applyTaxes
-  lineItems {
-    id
-    createdAt
-    updatedAt
-    title
-    description
-    price
-    type
-    taxType
-  }
-  }
-}
-query InvoicesForJob($jobId: ID!) {
-  invoicesForJob(jobId: $jobId) {
-  id
-  createdAt
-  updatedAt
-  job {
-    id
-    createdAt
-    updatedAt
-    client {
-      id
-      createdAt
-      updatedAt
-      name
-      email
-      phone
-      address1
-      address2
-      city
-      state
-      zipCode
-      notes
-      locationLatitude
-      locationLongitude
-      pk
-      address1
-      address2
-      zipCode
-      locationLatitude
-      locationLongitude
-    }
-    title
-    description
-    status
-    scheduledDate
-    dueDate
-    estimates {
-      id
-      createdAt
-      updatedAt
-      date
-      status
-      total
-      applyTaxes
-      lineItems {
-        id
-        createdAt
-        updatedAt
-        title
-        description
-        price
-        type
-        taxType
-      }
-    }
-  }
-  date
-  dueDate
-  status
-  total
-  applyTaxes
-  lineItems {
-    id
-    createdAt
-    updatedAt
-    title
-    description
-    price
-    type
-    taxType
-  }
-  }
-}
-query Invoice($id: ID!) {
-  invoice(id: $id) {
-  id
-  createdAt
-  updatedAt
-  job {
-    id
-    createdAt
-    updatedAt
-    client {
-      id
-      createdAt
-      updatedAt
-      name
-      email
-      phone
-      address1
-      address2
-      city
-      state
-      zipCode
-      notes
-      locationLatitude
-      locationLongitude
-      pk
-      address1
-      address2
-      zipCode
-      locationLatitude
-      locationLongitude
-    }
-    title
-    description
-    status
-    scheduledDate
-    dueDate
-    estimates {
-      id
-      createdAt
-      updatedAt
-      date
-      status
-      total
-      applyTaxes
-      lineItems {
-        id
-        createdAt
-        updatedAt
-        title
-        description
-        price
-        type
-        taxType
-      }
-    }
-  }
-  date
-  dueDate
-  status
-  total
-  applyTaxes
-  lineItems {
-    id
-    createdAt
-    updatedAt
-    title
-    description
-    price
-    type
-    taxType
-  }
-  }
-}
-query EstimatesForJob($jobId: ID!) {
-  estimatesForJob(jobId: $jobId) {
-  id
-  createdAt
-  updatedAt
-  job {
-    id
-    createdAt
-    updatedAt
-    client {
-      id
-      createdAt
-      updatedAt
-      name
-      email
-      phone
-      address1
-      address2
-      city
-      state
-      zipCode
-      notes
-      locationLatitude
-      locationLongitude
-      pk
-      address1
-      address2
-      zipCode
-      locationLatitude
-      locationLongitude
-    }
-    title
-    description
-    status
-    scheduledDate
-    dueDate
-    invoices {
-      id
-      createdAt
-      updatedAt
-      date
-      dueDate
-      status
-      total
-      applyTaxes
-      lineItems {
-        id
-        createdAt
-        updatedAt
-        title
-        description
-        price
-        type
-        taxType
-      }
-    }
-  }
-  date
-  status
-  total
-  applyTaxes
-  lineItems {
-    id
-    createdAt
-    updatedAt
-    title
-    description
-    price
-    type
-    taxType
-  }
-  }
-}
-query Estimates($status: String) {
-  estimates(status: $status) {
-  id
-  createdAt
-  updatedAt
-  job {
-    id
-    createdAt
-    updatedAt
-    client {
-      id
-      createdAt
-      updatedAt
-      name
-      email
-      phone
-      address1
-      address2
-      city
-      state
-      zipCode
-      notes
-      locationLatitude
-      locationLongitude
-      pk
-      address1
-      address2
-      zipCode
-      locationLatitude
-      locationLongitude
-    }
-    title
-    description
-    status
-    scheduledDate
-    dueDate
-    invoices {
-      id
-      createdAt
-      updatedAt
-      date
-      dueDate
-      status
-      total
-      applyTaxes
-      lineItems {
-        id
-        createdAt
-        updatedAt
-        title
-        description
-        price
-        type
-        taxType
-      }
-    }
-  }
-  date
-  status
-  total
-  applyTaxes
-  lineItems {
-    id
-    createdAt
-    updatedAt
-    title
-    description
-    price
-    type
-    taxType
-  }
-  }
-}
 query MyInvitations {
   myInvitations {
   id
@@ -865,67 +264,81 @@ query MyInvitations {
   updatedAt
   }
 }
-query UserProfile {
-  userProfile {
+query InvoicesForJob($jobId: ID!) {
+  invoicesForJob(jobId: $jobId) {
   id
-  firstName
-  lastName
-  phoneNumber
-  timezone
-  agentLanguageCode
-  agentVoice
   createdAt
   updatedAt
-  }
-}
-query SubscriptionPlans {
-  subscriptionPlans {
-  id
-  name
-  description
-  price
-  currency
-  period
-  trialPeriodDays
-  isActive
-  maxJobs
-  maxClients
-  maxTeamMembers
-  createdAt
-  updatedAt
-  }
-}
-query MySubscription {
-  mySubscription {
-  id
-  plan {
+  job {
     id
-    name
-    description
-    price
-    currency
-    period
-    trialPeriodDays
-    isActive
-    maxJobs
-    maxClients
-    maxTeamMembers
     createdAt
     updatedAt
+    client {
+      id
+      createdAt
+      updatedAt
+      name
+      email
+      phone
+      address1
+      address2
+      city
+      state
+      zipCode
+      notes
+      locationLatitude
+      locationLongitude
+      pk
+      address1
+      address2
+      zipCode
+      locationLatitude
+      locationLongitude
+    }
+    title
+    description
+    status
+    scheduledDate
+    dueDate
+    estimates {
+      id
+      createdAt
+      updatedAt
+      account
+      createdBy
+      date
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+        estimate
+      }
+    }
   }
+  date
+  dueDate
   status
-  currentPeriodStart
-  currentPeriodEnd
-  cancelAtPeriodEnd
-  createdAt
-  updatedAt
+  total
+  applyTaxes
+  lineItems {
+    id
+    createdAt
+    updatedAt
+    title
+    description
+    price
+    type
+    taxType
+    invoice
   }
-}
-query GoogleSheetsIntegrationStatus {
-  googleSheetsIntegrationStatus {
-  isEnabled
-  spreadsheetUrl
-  lastSync
   }
 }
 query Invoices($status: String) {
@@ -968,6 +381,8 @@ query Invoices($status: String) {
       id
       createdAt
       updatedAt
+      account
+      createdBy
       date
       status
       total
@@ -981,6 +396,7 @@ query Invoices($status: String) {
         price
         type
         taxType
+        estimate
       }
     }
   }
@@ -998,6 +414,630 @@ query Invoices($status: String) {
     price
     type
     taxType
+    invoice
   }
+  }
+}
+query Invoice($id: ID!) {
+  invoice(id: $id) {
+  id
+  createdAt
+  updatedAt
+  job {
+    id
+    createdAt
+    updatedAt
+    client {
+      id
+      createdAt
+      updatedAt
+      name
+      email
+      phone
+      address1
+      address2
+      city
+      state
+      zipCode
+      notes
+      locationLatitude
+      locationLongitude
+      pk
+      address1
+      address2
+      zipCode
+      locationLatitude
+      locationLongitude
+    }
+    title
+    description
+    status
+    scheduledDate
+    dueDate
+    estimates {
+      id
+      createdAt
+      updatedAt
+      account
+      createdBy
+      date
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+        estimate
+      }
+    }
+  }
+  date
+  dueDate
+  status
+  total
+  applyTaxes
+  lineItems {
+    id
+    createdAt
+    updatedAt
+    title
+    description
+    price
+    type
+    taxType
+    invoice
+  }
+  }
+}
+query EstimatesForJob($jobId: ID!) {
+  estimatesForJob(jobId: $jobId) {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  job {
+    id
+    createdAt
+    updatedAt
+    client {
+      id
+      createdAt
+      updatedAt
+      name
+      email
+      phone
+      address1
+      address2
+      city
+      state
+      zipCode
+      notes
+      locationLatitude
+      locationLongitude
+      pk
+      address1
+      address2
+      zipCode
+      locationLatitude
+      locationLongitude
+    }
+    title
+    description
+    status
+    scheduledDate
+    dueDate
+    invoices {
+      id
+      createdAt
+      updatedAt
+      date
+      dueDate
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+        invoice
+      }
+    }
+  }
+  date
+  status
+  total
+  applyTaxes
+  lineItems {
+    id
+    createdAt
+    updatedAt
+    title
+    description
+    price
+    type
+    taxType
+    estimate
+  }
+  }
+}
+query Estimates($status: String) {
+  estimates(status: $status) {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  job {
+    id
+    createdAt
+    updatedAt
+    client {
+      id
+      createdAt
+      updatedAt
+      name
+      email
+      phone
+      address1
+      address2
+      city
+      state
+      zipCode
+      notes
+      locationLatitude
+      locationLongitude
+      pk
+      address1
+      address2
+      zipCode
+      locationLatitude
+      locationLongitude
+    }
+    title
+    description
+    status
+    scheduledDate
+    dueDate
+    invoices {
+      id
+      createdAt
+      updatedAt
+      date
+      dueDate
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+        invoice
+      }
+    }
+  }
+  date
+  status
+  total
+  applyTaxes
+  lineItems {
+    id
+    createdAt
+    updatedAt
+    title
+    description
+    price
+    type
+    taxType
+    estimate
+  }
+  }
+}
+query Estimate($id: ID!) {
+  estimate(id: $id) {
+  id
+  createdAt
+  updatedAt
+  account
+  createdBy
+  job {
+    id
+    createdAt
+    updatedAt
+    client {
+      id
+      createdAt
+      updatedAt
+      name
+      email
+      phone
+      address1
+      address2
+      city
+      state
+      zipCode
+      notes
+      locationLatitude
+      locationLongitude
+      pk
+      address1
+      address2
+      zipCode
+      locationLatitude
+      locationLongitude
+    }
+    title
+    description
+    status
+    scheduledDate
+    dueDate
+    invoices {
+      id
+      createdAt
+      updatedAt
+      date
+      dueDate
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+        invoice
+      }
+    }
+  }
+  date
+  status
+  total
+  applyTaxes
+  lineItems {
+    id
+    createdAt
+    updatedAt
+    title
+    description
+    price
+    type
+    taxType
+    estimate
+  }
+  }
+}
+query Jobs($status: String, $clientId: ID, $assignedToId: ID, $dateFrom: DateTime, $dateTo: DateTime, $dateField: String) {
+  jobs(status: $status, clientId: $clientId, assignedToId: $assignedToId, dateFrom: $dateFrom, dateTo: $dateTo, dateField: $dateField) {
+  id
+  createdAt
+  updatedAt
+  client {
+    id
+    createdAt
+    updatedAt
+    name
+    email
+    phone
+    address1
+    address2
+    city
+    state
+    zipCode
+    notes
+    locationLatitude
+    locationLongitude
+    pk
+    address1
+    address2
+    zipCode
+    locationLatitude
+    locationLongitude
+  }
+  title
+  description
+  status
+  scheduledDate
+  dueDate
+  estimates {
+    id
+    createdAt
+    updatedAt
+    account
+    createdBy
+    date
+    status
+    total
+    applyTaxes
+    lineItems {
+      id
+      createdAt
+      updatedAt
+      title
+      description
+      price
+      type
+      taxType
+      estimate
+    }
+  }
+  invoices {
+    id
+    createdAt
+    updatedAt
+    date
+    dueDate
+    status
+    total
+    applyTaxes
+    lineItems {
+      id
+      createdAt
+      updatedAt
+      title
+      description
+      price
+      type
+      taxType
+      invoice
+    }
+  }
+  }
+}
+query Job($id: ID!) {
+  job(id: $id) {
+  id
+  createdAt
+  updatedAt
+  client {
+    id
+    createdAt
+    updatedAt
+    name
+    email
+    phone
+    address1
+    address2
+    city
+    state
+    zipCode
+    notes
+    locationLatitude
+    locationLongitude
+    pk
+    address1
+    address2
+    zipCode
+    locationLatitude
+    locationLongitude
+  }
+  title
+  description
+  status
+  scheduledDate
+  dueDate
+  estimates {
+    id
+    createdAt
+    updatedAt
+    account
+    createdBy
+    date
+    status
+    total
+    applyTaxes
+    lineItems {
+      id
+      createdAt
+      updatedAt
+      title
+      description
+      price
+      type
+      taxType
+      estimate
+    }
+  }
+  invoices {
+    id
+    createdAt
+    updatedAt
+    date
+    dueDate
+    status
+    total
+    applyTaxes
+    lineItems {
+      id
+      createdAt
+      updatedAt
+      title
+      description
+      price
+      type
+      taxType
+      invoice
+    }
+  }
+  }
+}
+query Clients {
+  clients {
+  id
+  createdAt
+  updatedAt
+  name
+  email
+  phone
+  address1
+  address2
+  city
+  state
+  zipCode
+  notes
+  locationLatitude
+  locationLongitude
+  jobs {
+    id
+    createdAt
+    updatedAt
+    title
+    description
+    status
+    scheduledDate
+    dueDate
+    estimates {
+      id
+      createdAt
+      updatedAt
+      account
+      createdBy
+      date
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+        estimate
+      }
+    }
+    invoices {
+      id
+      createdAt
+      updatedAt
+      date
+      dueDate
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+        invoice
+      }
+    }
+  }
+  pk
+  address1
+  address2
+  zipCode
+  locationLatitude
+  locationLongitude
+  }
+}
+query Client($id: ID!) {
+  client(id: $id) {
+  id
+  createdAt
+  updatedAt
+  name
+  email
+  phone
+  address1
+  address2
+  city
+  state
+  zipCode
+  notes
+  locationLatitude
+  locationLongitude
+  jobs {
+    id
+    createdAt
+    updatedAt
+    title
+    description
+    status
+    scheduledDate
+    dueDate
+    estimates {
+      id
+      createdAt
+      updatedAt
+      account
+      createdBy
+      date
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+        estimate
+      }
+    }
+    invoices {
+      id
+      createdAt
+      updatedAt
+      date
+      dueDate
+      status
+      total
+      applyTaxes
+      lineItems {
+        id
+        createdAt
+        updatedAt
+        title
+        description
+        price
+        type
+        taxType
+        invoice
+      }
+    }
+  }
+  pk
+  address1
+  address2
+  zipCode
+  locationLatitude
+  locationLongitude
+  }
+}
+query GoogleSheetsIntegrationStatus {
+  googleSheetsIntegrationStatus {
+  isEnabled
+  spreadsheetUrl
+  lastSync
   }
 }

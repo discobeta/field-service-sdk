@@ -33,7 +33,7 @@ exec('cd ../../ && python manage.py graphql_schema --out clients/sdk-ts/src/sche
 // ./manage.py generate_graphql_files --single-file --output-dir clients/sdk-ts --depth 20
 //./manage.py generate_graphql_files --sdk-file --output-dir clients/sdk-ts --depth 20
 
-exec('cd ../../ && python manage.py generate_graphql_files --single-file --output-dir clients/sdk-ts --depth 20', (error, stdout, stderr) => {
+exec('cd ../../ && python manage.py generate_graphql_files --single-file --output-dir clients/sdk-ts/src/generated --depth 20', (error, stdout, stderr) => {
   if (error) {
     console.error(`Error executing command: ${error.message}`);
     return;
@@ -43,7 +43,7 @@ exec('cd ../../ && python manage.py generate_graphql_files --single-file --outpu
   console.log('You can now run "npm run generate" to update the TypeScript types');
 }); 
 
-exec('cd ../../ && python manage.py generate_graphql_files --sdk-file --output-dir clients/sdk-ts --depth 20', (error, stdout, stderr) => {
+exec('cd ../../ && python manage.py generate_graphql_files --sdk-file --output-dir clients/sdk-ts/src/generated --depth 20', (error, stdout, stderr) => {
   if (error) {
     console.error(`Error executing command: ${error.message}`);
     return;

@@ -1,9 +1,9 @@
 overwrite: true
 schema: 
-  - "./src/sdk/schema/schema.graphql"
-documents: "./src/sdk/graphql/**/*.graphql"
+  - "./src/schema/schema.graphql"
+documents: "./src/generated/**/*.graphql"
 generates:
-  src/sdk/generated/graphql.ts:
+  src/generated/graphql.ts:
     plugins:
       - "typescript"
       - "typescript-operations"
@@ -14,4 +14,4 @@ generates:
       withHOC: false
       avoidOptionals: true
       skipTypename: false
-      outputFile: "./src/sdk/generated/graphql.ts" 
+      outputFile: "./src/generated/graphql.ts" 

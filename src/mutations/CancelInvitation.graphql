@@ -1,6 +1,0 @@
-mutation CancelInvitation($invitationId: ID!) {
-  cancelInvitation(invitationId: $invitationId) {
-  success
-  message
-  }
-}

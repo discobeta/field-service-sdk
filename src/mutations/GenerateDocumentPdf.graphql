@@ -1,7 +1,0 @@
-mutation GenerateDocumentPdf($documentId: ID!, $documentType: String!) {
-  generateDocumentPdf(documentId: $documentId, documentType: $documentType) {
-  success
-  message
-  documentUrl
-  }
-}

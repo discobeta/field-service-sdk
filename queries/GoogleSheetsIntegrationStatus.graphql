@@ -1,7 +1,0 @@
-query GoogleSheetsIntegrationStatus {
-  googleSheetsIntegrationStatus {
-  isEnabled
-  spreadsheetUrl
-  lastSync
-  }
-}

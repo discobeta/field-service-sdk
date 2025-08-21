@@ -5,8 +5,8 @@ import { FieldServiceClient, FieldServiceClientOptions } from './client';
 import * as types from './generated/graphql';
 
 // Import the GraphQL documents directly
-import * as mutations from '../mutations';
-import * as queries from '../queries';
+import * as mutations from './generated/mutations';
+import * as queries from './generated/queries';
 
 export class FieldServiceSDK {
   private client: FieldServiceClient;
@@ -41,6 +41,15 @@ export class FieldServiceSDK {
     return result.data?.tokenAuth;
   }
 
+  public async verifyToken(token: string) {
+    const result = await this.apolloClient.mutate({
+      mutation: mutations.VERIFY_TOKEN,
+      variables: { token }
+    });
+    
+    return result.data?.verifyToken;
+  }
+
   // Authentication Mutations
   public async signup(input: types.SignupInput) {
     return this.apolloClient.mutate({
@@ -71,15 +80,9 @@ export class FieldServiceSDK {
   }
 
   // User Profile Queries & Mutations
-  public async getUserProfile() {
+  public async userProfile() {
     return this.apolloClient.query({
       query: queries.USER_PROFILE
-    });
-  }
-
-  public async getUserProfileMutation() {
-    return this.apolloClient.mutate({
-      mutation: mutations.GET_USER_PROFILE
     });
   }
 
@@ -91,7 +94,7 @@ export class FieldServiceSDK {
   }
 
   // Client Queries & Mutations
-  public async getClients() {
+  public async clients() {
     return this.apolloClient.query({
       query: queries.CLIENTS
     });
@@ -134,7 +137,7 @@ export class FieldServiceSDK {
   }
 
   // Business Profile Queries & Mutations
-  public async getBusinessProfile() {
+  public async businessProfile() {
     return this.apolloClient.query({
       query: queries.BUSINESS_PROFILE
     });
@@ -148,14 +151,14 @@ export class FieldServiceSDK {
   }
 
   // Job Queries & Mutations
-  public async getJobs(status?: string, clientId?: string, assignedToId?: string) {
+  public async jobs(status?: string, clientId?: string, assignedToId?: string) {
     return this.apolloClient.query({
       query: queries.JOBS,
       variables: { status, clientId, assignedToId }
     });
   }
 
-  public async getJob(id: string) {
+  public async job(id: string) {
     return this.apolloClient.query({
       query: queries.JOB,
       variables: { id }
@@ -184,21 +187,21 @@ export class FieldServiceSDK {
   }
 
   // Estimate Queries & Mutations
-  public async getEstimates(status?: string) {
+  public async estimates(status?: string) {
     return this.apolloClient.query({
       query: queries.ESTIMATES,
       variables: { status }
     });
   }
 
-  public async getEstimate(id: string) {
+  public async estimate(id: string) {
     return this.apolloClient.query({
       query: queries.ESTIMATE,
       variables: { id }
     });
   }
 
-  public async getEstimatesForJob(jobId: string) {
+  public async estimatesForJob(jobId: string) {
     return this.apolloClient.query({
       query: queries.ESTIMATES_FOR_JOB,
       variables: { jobId }
@@ -227,21 +230,21 @@ export class FieldServiceSDK {
   }
 
   // Invoice Queries & Mutations
-  public async getInvoices(status?: string) {
+  public async invoices(status?: string) {
     return this.apolloClient.query({
       query: queries.INVOICES,
       variables: { status }
     });
   }
 
-  public async getInvoice(id: string) {
+  public async invoice(id: string) {
     return this.apolloClient.query({
       query: queries.INVOICE,
       variables: { id }
     });
   }
 
-  public async getInvoicesForJob(jobId: string) {
+  public async invoicesForJob(jobId: string) {
     return this.apolloClient.query({
       query: queries.INVOICES_FOR_JOB,
       variables: { jobId }
@@ -294,25 +297,25 @@ export class FieldServiceSDK {
   }
 
   // Account & Team Management
-  public async getCurrentAccount() {
+  public async currentAccount() {
     return this.apolloClient.query({
       query: queries.CURRENT_ACCOUNT
     });
   }
 
-  public async getAccountMembers() {
+  public async accountMembers() {
     return this.apolloClient.query({
       query: queries.ACCOUNT_MEMBERS
     });
   }
 
-  public async getPendingInvitations() {
+  public async pendingInvitations() {
     return this.apolloClient.query({
       query: queries.PENDING_INVITATIONS
     });
   }
 
-  public async getMyInvitations() {
+  public async myInvitations() {
     return this.apolloClient.query({
       query: queries.MY_INVITATIONS
     });
@@ -369,13 +372,13 @@ export class FieldServiceSDK {
   }
 
   // Subscription Management
-  public async getSubscriptionPlans() {
+  public async subscriptionPlans() {
     return this.apolloClient.query({
       query: queries.SUBSCRIPTION_PLANS
     });
   }
 
-  public async getMySubscription() {
+  public async mySubscription() {
     return this.apolloClient.query({
       query: queries.MY_SUBSCRIPTION
     });
@@ -431,13 +434,13 @@ export class FieldServiceSDK {
   }
 
   // Google Sheets Integration
-  public async getGoogleSheetsIntegrationStatus() {
+  public async googleSheetsIntegrationStatus() {
     return this.apolloClient.query({
       query: queries.GOOGLE_SHEETS_INTEGRATION_STATUS
     });
   }
 
-  public async enableGoogleSheetsIntegration(input: types.GoogleSheetsAuthInput) {
+  public async enableGoogleSheetsIntegration(input: types.EnableGoogleSheetsIntegration) {
     return this.apolloClient.mutate({
       mutation: mutations.ENABLE_GOOGLE_SHEETS_INTEGRATION,
       variables: { input }
@@ -485,38 +488,10 @@ export class FieldServiceSDK {
     });
   }
 
-  public async getAvailableVoices(input?: types.GetVoicesInput) {
+  public async availableVoices(input?: types.GetVoicesInput) {
     return this.apolloClient.query({
       query: queries.AVAILABLE_VOICES,
       variables: { input }
-    });
-  }
-
-  // Vertex AI Features
-  public async vertexChatCompletion(input: types.VertexChatCompletionInput) {
-    return this.apolloClient.mutate({
-      mutation: mutations.VERTEX_CHAT_COMPLETION,
-      variables: { input }
-    });
-  }
-
-  public async vertexChatWithTools(input: types.VertexChatWithToolsInput) {
-    return this.apolloClient.mutate({
-      mutation: mutations.VERTEX_CHAT_WITH_TOOLS,
-      variables: { input }
-    });
-  }
-
-  public async vertexCreateEmbedding(input: types.VertexEmbeddingInput) {
-    return this.apolloClient.mutate({
-      mutation: mutations.VERTEX_CREATE_EMBEDDING,
-      variables: { input }
-    });
-  }
-
-  public async vertexListModels() {
-    return this.apolloClient.mutate({
-      mutation: mutations.VERTEX_LIST_MODELS
     });
   }
 

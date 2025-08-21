@@ -1,6 +1,0 @@
-mutation CancelSubscription {
-  cancelSubscription {
-  success
-  message
-  }
-}

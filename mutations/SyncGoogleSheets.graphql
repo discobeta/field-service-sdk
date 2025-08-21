@@ -1,6 +1,0 @@
-mutation SyncGoogleSheets {
-  syncGoogleSheets {
-  success
-  message
-  }
-}
