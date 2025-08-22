@@ -151,10 +151,13 @@ export class FieldServiceSDK {
   }
 
   // Job Queries & Mutations
-  public async jobs(status?: string, clientId?: string, assignedToId?: string) {
+  public async jobs(filter?: types.JobFilter, pagination?: types.PaginationInput) {
     return this.apolloClient.query({
       query: queries.JOBS,
-      variables: { status, clientId, assignedToId }
+      variables: {
+        filter: filter,
+        pagination: pagination
+      }
     });
   }
 
