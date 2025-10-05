@@ -94,9 +94,10 @@ export class FieldServiceSDK {
   }
 
   // Client Queries & Mutations
-  public async clients() {
+  public async clients(filter?: types.ClientFilter, pagination?: types.PaginationInput) {
     return this.apolloClient.query({
-      query: queries.CLIENTS
+      query: queries.CLIENTS,
+      variables: { filter, pagination }
     });
   }
 
@@ -506,4 +507,21 @@ export class FieldServiceSDK {
   public getFieldServiceClient(): FieldServiceClient {
     return this.client;
   }
+
+  // Report Queries
+  public async report(reportType: string) {
+    return this.apolloClient.query({
+      query: queries.REPORT,
+      variables: { reportType }
+    });
+  }
+
+  // Vertex AI
+  public async vertexChatCompletion(input: types.VertexChatCompletionInput) {
+    return this.apolloClient.mutate({
+      mutation: mutations.VERTEX_CHAT_COMPLETION,
+      variables: { input }
+    });
+  }
+  
 }
